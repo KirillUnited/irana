@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Footer, Header } from "@/components/portfolio";
+import { Footer, Header } from "@/components/shared";
 
 export const metadata: Metadata = {
-  title: "Irina Korzh - Portfolio",
-  description: "Portfolio of Irina Korzh, a web designer",
+  title: "Irina Korzhel - Portfolio",
+  description: "Portfolio of Irina Korzhel, a web designer",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

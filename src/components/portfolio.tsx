@@ -1,7 +1,5 @@
-'use client';
-import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
-import { contacts, navigation, processSteps, projects, services, type ProcessStep, type Project, type Service } from '@/lib/content';
+import { ArrowUpRight } from 'lucide-react';
+import { processSteps, projects, services, type ProcessStep, type Project, type Service } from '@/lib/content';
 
 export function ArrowLink({ children, href = '#contact', className = '' }: { children: string; href?: string; className?: string }) {
   return (
@@ -27,29 +25,6 @@ export function DecorativeShape({ className = '' }: { className?: string }) {
       <path d="M60 0V43M60 77v43M0 60h43M77 60h43M18 18l30 30M72 72l30 30M102 18L72 48M48 72 18 102" className="drawn-line" />
       <path d="M60 31c9 6 14 14 14 29s-5 23-14 29c-9-6-14-14-14-29s5-23 14-29Z" className="drawn-line" />
     </svg>
-  );
-}
-
-export function Header() {
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-  return (
-    <header className="relative z-20 border-b hairline">
-      <div className="site-shell flex min-h-[4.5rem] items-center justify-between gap-5">
-        <a href="#top" onClick={close} className="serif text-[15px] leading-[.82]" data-testid="link-logo">
-          Ирина<br />Коржель
-        </a>
-        <nav className={`${open ? 'absolute left-0 right-0 top-full flex bg-background px-6 py-6' : 'hidden'} flex-col gap-5 border-b hairline md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0`} aria-label="Основная навигация">
-          {navigation.map((item) => <a key={item.href} href={item.href} onClick={close} className="nav-link text-[11px]" data-testid={`link-nav-${item.label}`}>{item.label}</a>)}
-        </nav>
-        <div className="flex items-center gap-5">
-          <ArrowLink href="#contact" className="hidden sm:inline-flex">Связаться со мной</ArrowLink>
-          <button type="button" className="md:hidden" onClick={() => setOpen(!open)} aria-label={open ? 'Закрыть меню' : 'Открыть меню'} data-testid="button-mobile-menu">
-            {open ? <X size={21} strokeWidth={1.2} /> : <Menu size={21} strokeWidth={1.2} />}
-          </button>
-        </div>
-      </div>
-    </header>
   );
 }
 
@@ -86,27 +61,6 @@ export function ServiceItem({ item }: { item: Service }) {
       {item.description && <p className="mt-4 max-w-[16rem] text-[11px] leading-[1.5] text-foreground/70">{item.description}</p>}
       {item.price && <><p className="mt-4 text-xs">{item.price}</p><ArrowLink className="mt-5" href="#contact">Заказать</ArrowLink></>}
     </article>
-  );
-}
-
-export function Footer() {
-  return (
-    <footer id="contact" className="border-t hairline pb-8 pt-12 md:pt-16">
-      <div className="site-shell">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_1.6fr_.65fr]">
-          <div><p className="serif text-3xl leading-[.9]">Ирина<br />Коржель</p><p className="mt-8 max-w-[14rem] text-xs leading-[1.5] text-foreground/60">Дизайн, который помогает вашему делу быть увиденным.</p></div>
-          <div className="grid grid-cols-2 gap-x-7 gap-y-3 text-xs sm:grid-cols-3">
-            <a href="#about" className="nav-link" data-testid="link-footer-about">Обо мне</a><a href="#works" className="nav-link" data-testid="link-footer-works">Портфолио</a><a href="#services" className="nav-link" data-testid="link-footer-services">Виды услуг</a><a href="#process" className="nav-link" data-testid="link-footer-process">Этапы работы</a>
-          </div>
-          <div className="md:text-right"><ArrowLink href="mailto:hello@irinakorzh.by">Связаться со мной</ArrowLink><div className="mt-8 ml-auto grid h-20 w-20 place-items-center border hairline text-[10px] leading-tight text-center">QR<br />CODE</div></div>
-        </div>
-        <div className="mt-14 grid gap-3 border-t hairline pt-5 text-[10px] text-foreground/65 sm:grid-cols-3">
-          {contacts.slice(0, 3).map((contact) => <a key={contact.label} href={contact.href} className="nav-link" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label} <span className="text-foreground">{contact.value}</span></a>)}
-          {contacts.slice(3).map((contact) => <a key={contact.label} href={contact.href} className="nav-link" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label} <span className="text-foreground">{contact.value}</span></a>)}
-        </div>
-        <p className="mt-10 text-[10px] text-foreground/45">© {new Date().getFullYear()} Ирина Коржель</p>
-      </div>
-    </footer>
   );
 }
 

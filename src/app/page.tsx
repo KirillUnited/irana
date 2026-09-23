@@ -1,5 +1,5 @@
 import { ProcessItem, ProjectCard, ServiceItem } from "@/components/portfolio";
-import { processSteps, projects, services, type ProcessStep, type Project, type Service } from '@/lib/content';
+import { processSteps, projects, services } from '@/lib/content';
 
 
 export default function Home() {
