@@ -28,21 +28,6 @@ export function DecorativeShape({ className = '' }: { className?: string }) {
   );
 }
 
-export function ProjectCard({ project }: { project: Project }) {
-  return (
-    <article className="group">
-      <a href={project.href} className="project-frame block overflow-hidden border hairline" data-testid={`link-project-${project.number}`}>
-        <img src={project.image} alt={project.alt} className="project-image aspect-[1.47] w-full object-cover" />
-      </a>
-      <div className="mt-4 flex items-start justify-between gap-4">
-        <div><p className="eyebrow text-foreground/55">{project.number}</p><h3 className="serif mt-2 max-w-[20rem] text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.04]">{project.title}</h3></div>
-        <ArrowUpRight className="mt-1 shrink-0 opacity-50 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={18} strokeWidth={1} />
-      </div>
-      <p className="mt-3 max-w-[24rem] text-xs leading-[1.55] text-foreground/65">{project.description}</p>
-    </article>
-  );
-}
-
 export function ProcessItem({ item }: { item: ProcessStep }) {
   return (
     <article className="border-t hairline pt-3 md:min-h-[10rem]">

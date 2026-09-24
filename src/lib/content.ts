@@ -34,7 +34,7 @@ export const projects: Project[] = [
     description: 'Сайт, который помогает записаться на процедуру и почувствовать заботу ещё до первого визита.',
     image: '/images/project-laser.jpg',
     alt: 'Презентация сайта студии лазерной эпиляции',
-    href: '#contact',
+    href: 'https://www.behance.net/gallery/254806671/WebsiteDepilation-salon',
   },
   {
     number: '02',
