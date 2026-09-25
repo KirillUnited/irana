@@ -3,8 +3,11 @@ import { processSteps, projects, services, type ProcessStep, type Project, type 
 
 export function ArrowLink({ children, href = '#contact', className = '' }: { children: string; href?: string; className?: string }) {
   return (
-    <a href={href} className={`arrow-link inline-flex items-center gap-2 text-[11px] uppercase tracking-[.08em] ${className}`} data-testid={`link-${children.toLowerCase().replace(/\s+/g, '-')}`}>
-      <span>{children}</span><ArrowUpRight size={14} strokeWidth={1.2} />
+    <a href={href} className={`${className}`} data-testid={`link-${children.toLowerCase().replace(/\s+/g, '-')}`}>
+      <div className="flex items-center gap-2 group">
+        <span>{children}</span>
+        <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+      </div>
     </a>
   );
 }
