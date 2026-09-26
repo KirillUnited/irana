@@ -5,12 +5,13 @@ import { ArrowLink } from '@/components/portfolio';
 import { navigation } from '@/lib/content';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import { ContactModal } from './Contact';
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   return (
-    <header className="bg-background z-20 border-b sticky top-0">
+    <header className="bg-background z-20 border-b border-b-foreground sticky top-0">
       <div className="container flex min-h-18 items-center justify-between gap-5 py-4">
         <Link href="#top" onClick={close} className="font-serif text-2xl w-3xs" data-testid="link-logo">
           Ирина<br />Коржель
@@ -20,6 +21,14 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-5 w-3xs">
           <ArrowLink href="#contact" className="font-serif text-2xl nav-link">Связаться со мной</ArrowLink>
+          <ContactModal>
+            <button
+              type="button"
+              className="inline-flex font-serif text-2xl nav-link"
+            >
+              Связаться со мной
+            </button>
+          </ContactModal>
           <Button type="button" className="md:hidden" onClick={() => setOpen(!open)} aria-label={open ? 'Закрыть меню' : 'Открыть меню'} data-testid="button-mobile-menu">
             {open ? <X size={21} strokeWidth={1.2} /> : <Menu size={21} strokeWidth={1.2} />}
           </Button>
