@@ -1,7 +1,7 @@
 import { ProcessItem, ServiceItem } from "@/components/portfolio";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 
-import { processSteps, projects, services } from '@/lib/content';
+import { processSteps, projects, websiteTypes } from '@/lib/content';
 import Image from "next/image";
 
 
@@ -20,7 +20,7 @@ export default function Home() {
       {processSteps.map((step, index) => (
         <ProcessItem key={index} item={step} />
       ))}
-      {services.map((service, index) => (
+      {websiteTypes.map((service, index) => (
         <ServiceItem key={index} item={service} />
       ))}
     </main>
