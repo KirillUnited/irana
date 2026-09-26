@@ -33,53 +33,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 
 import { cn } from '@/lib/utils';
-
-/**
- * Keep contact information outside JSX.
- *
- * Replace the placeholder values with the project's real contact data
- * if they already exist in lib/content.
- */
-const contacts = {
-  phone: {
-    label: 'Телефон',
-    value: '+000 00 000 00 00',
-    href: 'tel:+00000000000',
-  },
-  email: {
-    label: 'E-mail',
-    value: 'hello@example.com',
-    href: 'mailto:hello@example.com',
-  },
-  viber: {
-    label: 'Viber',
-    value: 'Viber',
-    href: 'viber://chat?number=%2B00000000000',
-  },
-  telegram: {
-    label: 'Telegram',
-    value: '@username',
-    href: 'https://t.me/username',
-  },
-  instagram: {
-    label: 'Instagram',
-    value: '@username',
-    href: 'https://instagram.com/username',
-  },
-  behance: {
-    label: 'Behance',
-    value: 'Behance',
-    href: 'https://www.behance.net/username',
-  },
-} as const;
-
-/**
- * Keep the QR asset configurable.
- *
- * Replace this path with the existing project QR asset.
- * If no QR asset exists yet, set this to null.
- */
-const qrCodeSrc: string | null = null;
+import { contactInfo } from '@/lib/content';
 
 interface ContactModalProps {
   children?: React.ReactNode;
@@ -138,6 +92,7 @@ function ContactForm() {
               'shadow-none',
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
+              'text-base',
             )}
           />
         </div>
@@ -163,6 +118,7 @@ function ContactForm() {
               'shadow-none',
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
+              'text-base',
             )}
           />
         </div>
@@ -188,6 +144,7 @@ function ContactForm() {
               'shadow-none',
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
+              'text-base',
             )}
           />
         </div>
@@ -215,6 +172,7 @@ function ContactForm() {
               'shadow-none',
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
+              'text-base',
             )}
           />
         </div>
@@ -224,7 +182,7 @@ function ContactForm() {
         <Button
           type="submit"
           className={cn(
-            'h-12 rounded-none px-8',
+            'h-11 lg:h-12 rounded-none px-8',
             'font-sans text-sm font-normal',
           )}
         >
@@ -247,32 +205,44 @@ function ContactForm() {
 function ContactLinks() {
   const items = [
     {
-      ...contacts.phone,
+      label: 'Телефон',
+      value: contactInfo.phone || '',
+      href: contactInfo.phone ? `tel:${contactInfo.phone}` : '#',
       icon: Phone,
       external: false,
     },
     {
-      ...contacts.email,
+      label: 'E-mail',
+      value: contactInfo.email || '',
+      href: contactInfo.email ? `mailto:${contactInfo.email}` : '#',
       icon: Mail,
       external: false,
     },
     {
-      ...contacts.viber,
+      label: 'Viber',
+      value: 'Написать в Viber',
+      href: contactInfo.viber || '#',
       icon: Send,
       external: false,
     },
     {
-      ...contacts.telegram,
+      label: 'Telegram',
+      value: '@irinakorzh',
+      href: contactInfo.telegram || '#',
       icon: Send,
       external: true,
     },
     {
-      ...contacts.instagram,
+      label: 'Instagram',
+      value: '@irinakorzh',
+      href: contactInfo.instagram || '#',
       icon: Instagram,
       external: true,
     },
     {
-      ...contacts.behance,
+      label: 'Behance',
+      value: 'behance.net/irinakorzh',
+      href: contactInfo.behance || '#',
       icon: ExternalLink,
       external: true,
     },
@@ -361,10 +331,10 @@ function ContactContent() {
 
         <ContactLinks />
 
-        {qrCodeSrc && (
+        {contactInfo.qrCode && (
           <div className="mt-10 flex justify-start">
             <Image
-              src={qrCodeSrc}
+              src={contactInfo.qrCode}
               alt="QR-код для связи"
               width={160}
               height={160}
