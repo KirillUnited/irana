@@ -63,8 +63,8 @@ export const websiteTypes: WebsiteType[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: 'Телефон', href: 'tel:+375290000000', external: false },
-  { label: 'Viber', href: 'viber://chat?number=%2B375290000000', external: true },
+  { label: 'Телефон', href: 'tel:+375445764476', external: false },
+  { label: 'Viber', href: 'viber://chat?number=%2B375445764476', external: true },
   { label: 'Telegram', href: 'https://t.me/', external: true },
   { label: 'Mail', href: 'mailto:hello@irinakorzh.by', external: false },
   { label: 'Behance', href: 'https://behance.net/', external: true },
@@ -72,9 +72,9 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const contactInfo: ContactInfo = {
-  phone: '+375 29 000 00 00',
+  phone: '+375(44)576-44-76',
   email: 'hello@irinakorzh.by',
-  viber: 'viber://chat?number=%2B375290000000',
+  viber: 'viber://chat?number=%2B375445764476',
   telegram: 'https://t.me/',
   behance: 'https://behance.net/',
   instagram: 'https://instagram.com/',
