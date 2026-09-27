@@ -17,7 +17,7 @@ export function ProjectCard({ project }: { project: Project }) {
             sizes="100vw"
             width={0}
             height={0}
-            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+            className="w-full object-cover transition-transform group-hover:scale-105"
           />
         </div>
 

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export function Projects() {
   return (
-    <section id="works">
+    <section id="works" className='border-b pb-10 lg:pb-20'>
       <div className="container">
         <motion.h2
           className="text-[clamp(36px,5vw,72px)] text-center font-serif"
@@ -18,7 +18,7 @@ export function Projects() {
           МОИ РАБОТЫ
         </motion.h2>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-10">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
