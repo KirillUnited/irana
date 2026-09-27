@@ -3,7 +3,7 @@ import {About, Hero, Process, Projects, Skills, WebsiteTypes} from "@/components
 
 export default function Home() {
   return (
-    <main className="flex-1 container mx-auto">
+    <main className="flex-1">
         <Hero/>
         <Projects/>
         <About/>
