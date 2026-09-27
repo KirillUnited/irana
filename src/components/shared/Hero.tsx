@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export function Hero() {
   return (
-    <section className="py-10 lg:py-20">
+    <section className="py-10 lg:py-20 lg:pb-0">
       <div className="container relative">
         {/* Grid layout for hero */}
         <div className="lg:grid grid-cols-1 lg:grid-cols-8 lg:min-h-[55vh]">
