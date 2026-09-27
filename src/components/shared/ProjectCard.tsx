@@ -8,16 +8,16 @@ import type { Project } from "@/lib/types";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-      <Link href={project.href || '/'} target="_blank" data-testid={`link-project-${project.number}`} className="block">
-    <Card className="group overflow-hidden">
-        <div className="aspect-[4/3] overflow-hidden">
-          <Image 
-            src={project.image} 
-            alt={project.imageAlt} 
-            sizes="100vw" 
-            width={0} 
-            height={0} 
-            className="h-full w-full object-cover transition-transform group-hover:scale-105" 
+      <Link href={project.href || '/'} target="_blank" data-testid={`link-project-${project.number}`} className="block h-full">
+    <Card className="group overflow-hidden rounded-none h-full">
+        <div className="aspect-4/3 overflow-hidden">
+          <Image
+            src={project.image}
+            alt={project.imageAlt}
+            sizes="100vw"
+            width={0}
+            height={0}
+            className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
         </div>
 
@@ -29,7 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <p className="mt-2 text-xs leading-[1.55] text-foreground/65">{project.category}</p>
           <ArrowUpRight className="mt-1 shrink-0 opacity-50 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={18} strokeWidth={1} />
         </CardContent>
-        <CardFooter><p className="text-xs leading-[1.55] text-foreground/65">{project.description}</p></CardFooter>
+        <CardFooter><p>{project.description}</p></CardFooter>
     </Card>
       </Link>
   );
