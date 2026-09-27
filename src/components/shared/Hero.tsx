@@ -9,7 +9,7 @@ export function Hero() {
       <div className="mx-auto max-w-[1440px]">
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-12">
           {/* Photo */}
-          <motion.div 
+          <motion.div
             className="order-1 lg:order-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export function Hero() {
           >
             <div className="aspect-[4/5] overflow-hidden bg-muted">
               <Image
-                src="/images/irina-portrait.jpg"
+                src="/images/portrait.png"
                 alt="Ирина Коржель"
                 fill
                 className="object-cover"
@@ -28,7 +28,7 @@ export function Hero() {
           </motion.div>
 
           {/* Text */}
-          <motion.div 
+          <motion.div
             className="order-2 flex flex-col justify-center lg:order-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
