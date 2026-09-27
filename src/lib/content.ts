@@ -9,6 +9,13 @@ import type {
   ContactInfo,
 } from "./types";
 
+export const siteConfig = {
+  seo: {
+    title: 'Irina Korzhel - Portfolio',
+    description: '',
+  },
+};
+
 export const navigation: NavigationItem[] = [
   { label: 'Обо мне', href: '#about' },
   { label: 'Виды услуг', href: '#services' },
