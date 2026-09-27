@@ -8,7 +8,7 @@ export function WebsiteTypes() {
   return (
     <section id="services" className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-[1440px]">
-        <motion.h2 
+        <motion.h2
           className="text-5xl leading-[0.9] md:text-6xl lg:text-8xl xl:text-9xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ export function WebsiteTypes() {
         >
           ВИДЫ САЙТОВ
         </motion.h2>
-        
+
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {websiteTypes.map((type, index) => (
             <motion.article
@@ -40,7 +40,7 @@ export function WebsiteTypes() {
               {type.price && (
                 <>
                   <p className="mt-4 text-xs">{type.price}</p>
-                  <ArrowLink className="mt-5 h-11 flex items-center" href="#contact">
+                  <ArrowLink className="mt-5 h-11 flex items-center">
                     {type.actionLabel || 'Заказать'}
                   </ArrowLink>
                 </>
