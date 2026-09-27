@@ -182,9 +182,9 @@ function ContactForm() {
         <Button
           type="submit"
           className={cn(
-            'h-11 lg:h-12 rounded-none px-8',
-            'font-sans text-sm font-normal',
+            'font-serif text-lg font-normal cursor-pointer',
           )}
+          size={'lg'}
         >
           {submitted ? 'Отправлено' : 'Отправить'}
         </Button>
