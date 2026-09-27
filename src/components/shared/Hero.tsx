@@ -10,7 +10,12 @@ export function Hero() {
         {/* Grid layout for hero */}
         <div className="grid grid-cols-1 lg:grid-cols-8 lg:min-h-[55vh]">
           <div className="lg:col-span-8 lg:col-start-2">
-            <div className="grid grid-cols-1 lg:grid-cols-6 relative h-full gap-6">
+            <motion.div className="grid grid-cols-1 lg:grid-cols-6 relative h-full gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               {/* Left: UI/UX label */}
               <div className="hidden lg:flex items-end absolute left-0 bottom-0">
                 <div className="bg-background blur-3xl absolute inset-0"></div>
@@ -47,28 +52,38 @@ export function Hero() {
                   <br />а сайт, который работает на Вас.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Heading overlay: ВЕБ-ДИЗАЙН — positioned over portrait on right */}
-            <div className="lg:absolute lg:top-0 lg:right-0 lg:pointer-events-none flex lg:items-start lg:justify-end">
+            <motion.div className="lg:absolute lg:top-0 lg:right-0 lg:pointer-events-none flex lg:items-start lg:justify-end"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 , delay: 0.6}}
+            >
               <div className="bg-background blur-3xl absolute inset-0"></div>
               <h1
                 className="font-serif text-[clamp(40px,9vw,140px)] text-right lg:text-right pointer-events-auto relative leading-none"
               >
                 ВЕБ-ДИЗАЙН
               </h1>
-            </div>
+            </motion.div>
 
 
 
             {/* Mobile: UI/UX label */}
-            <div className="lg:hidden px-6 pb-8">
+            <motion.div className="lg:hidden px-6 pb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               <p
                 className="text-[clamp(64px,9vw,136px)] font-serif"
               >
                 UI/UX
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 
