@@ -1,4 +1,4 @@
-import { socialLinks, contactInfo } from '@/lib/content';
+import { socialLinks } from '@/lib/content';
 import { ContactModal } from './Contact';
 import { Button } from '../ui/button';
 import { ArrowUpRight } from 'lucide-react';
