@@ -221,6 +221,10 @@
 .site-shell { width: min(100% - 2rem, 1280px); margin-inline: auto; }
 .display-title { font-family: var(--app-font-serif); font-weight: 500; letter-spacing: -.055em; line-height: .86; }
 .nav-link { transition: opacity .25s ease; }
+.arrow-link-icon {
+    width: 1.5em;
+    height: 1.5em;
+}
 .nav-link:hover .arrow-link-icon {
     transform: rotate(90deg);
     transition: transform .25s ease;
