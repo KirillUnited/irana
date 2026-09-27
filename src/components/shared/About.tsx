@@ -9,7 +9,7 @@ export function About() {
       <div className="mx-auto max-w-[1440px]">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Photo */}
-          <motion.div 
+          <motion.div
             className="order-1 lg:order-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export function About() {
           >
             <div className="aspect-[4/5] overflow-hidden bg-muted">
               <Image
-                src="/images/irina-portrait.jpg"
+                src="/images/portrait.png"
                 alt="Ирина Коржель"
                 fill
                 className="object-cover"
@@ -27,7 +27,7 @@ export function About() {
           </motion.div>
 
           {/* Text */}
-          <motion.div 
+          <motion.div
             className="order-2 flex flex-col justify-center lg:order-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -1,9 +1,4 @@
-import { ProcessItem, ServiceItem } from "@/components/portfolio";
-import { ProjectCard } from "@/components/shared/ProjectCard";
-
-import { processSteps, projects, websiteTypes } from '@/lib/content';
-import Image from "next/image";
-import {About, Footer, Hero, Process, Projects, Skills, WebsiteTypes} from "@/components/shared";
+import {About, Hero, Process, Projects, Skills, WebsiteTypes} from "@/components/shared";
 
 
 export default function Home() {
