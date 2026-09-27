@@ -1,14 +1,19 @@
 import { ArrowUpRight } from 'lucide-react';
-import { processSteps, projects, services, type ProcessStep, type Project, type Service } from '@/lib/content';
+import { processSteps, websiteTypes } from '@/lib/content';
+import type { ProcessStep, WebsiteType } from '@/lib/types';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
 
-export function ArrowLink({ children, href = '#contact', className = '' }: { children: string; href?: string; className?: string }) {
+export function ArrowLink({ children, className = '' }: { children: string; className?: string }) {
   return (
-    <a href={href} className={`${className}`} data-testid={`link-${children.toLowerCase().replace(/\s+/g, '-')}`}>
-      <div className="flex items-center gap-2 group">
-        <span>{children}</span>
-        <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+    <Button variant={'ghost'} className={cn(`font-serif text-2xl hover:cursor-pointer px-0`, className)}>
+      <div className='flex flex-col nav-link'>
+        <div className="flex items-center gap-2 ">
+          <span>{children}</span>
+          <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+        </div>
       </div>
-    </a>
+    </Button>
   );
 }
 
@@ -41,15 +46,15 @@ export function ProcessItem({ item }: { item: ProcessStep }) {
   );
 }
 
-export function ServiceItem({ item }: { item: Service }) {
+export function ServiceItem({ item }: { item: WebsiteType }) {
   return (
-    <article className={`relative min-h-[12.5rem] border-l hairline px-4 py-4 md:px-5 ${item.featured ? 'bg-[#e8f0ed]' : ''}`}>
+    <article className={`relative min-h-[12.5rem] border-l hairline px-4 py-4 md:px-5 ${item.price ? 'bg-[#e8f0ed]' : ''}`}>
       <span className="eyebrow text-foreground/55">{item.number}</span>
       <h3 className="serif mt-7 text-[clamp(1.2rem,2vw,1.7rem)] leading-[1.05]">{item.title}</h3>
       {item.description && <p className="mt-4 max-w-[16rem] text-[11px] leading-[1.5] text-foreground/70">{item.description}</p>}
-      {item.price && <><p className="mt-4 text-xs">{item.price}</p><ArrowLink className="mt-5" href="#contact">Заказать</ArrowLink></>}
+      {item.price && <><p className="mt-4 text-xs">{item.price}</p><ArrowLink className="mt-5">{item.actionLabel || 'Заказать'}</ArrowLink></>}
     </article>
   );
 }
 
-export { projects, processSteps, services };
+export { processSteps, websiteTypes };

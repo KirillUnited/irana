@@ -1,22 +1,47 @@
-import { ArrowLink } from '@/components/portfolio';
-import { contacts } from '@/lib/content';
+import { socialLinks, contactInfo } from '@/lib/content';
+import { ContactModal } from './Contact';
+import { Button } from '../ui/button';
+import { ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer id="contact" className="border-t hairline pb-8 pt-12 md:pt-16">
-      <div className="site-shell">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_1.6fr_.65fr]">
-          <div><p className="serif text-3xl leading-[.9]">Ирина<br />Коржель</p><p className="mt-8 max-w-[14rem] text-xs leading-[1.5] text-foreground/60">Дизайн, который помогает вашему делу быть увиденным.</p></div>
-          <div className="grid grid-cols-2 gap-x-7 gap-y-3 text-xs sm:grid-cols-3">
-            <a href="#about" className="nav-link" data-testid="link-footer-about">Обо мне</a><a href="#works" className="nav-link" data-testid="link-footer-works">Портфолио</a><a href="#services" className="nav-link" data-testid="link-footer-services">Виды услуг</a><a href="#process" className="nav-link" data-testid="link-footer-process">Этапы работы</a>
+    <footer id="contact" className="border-t py-6">
+      <div className="container">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-8">
+          <div className="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <p className="font-serif text-2xl">Ирина Коржель</p>
+            <ul className="flex flex-col items-start gap-2 lg:text-2xl font-light">
+              <li><a href="#about" className="nav-link">Обо мне</a></li>
+              <li><a href="#works" className="nav-link">Портфолио</a></li>
+              <li><a href="#services" className="nav-link">Виды услуг</a></li>
+              <li><a href="#process" className="nav-link">Этапы работы</a></li>
+            </ul>
           </div>
-          <div className="md:text-right"><ArrowLink href="mailto:hello@irinakorzh.by">Связаться со мной</ArrowLink><div className="mt-8 ml-auto grid h-20 w-20 place-items-center border hairline text-[10px] leading-tight text-center">QR<br />CODE</div></div>
+          <div className="lg:col-span-5 grid lg:grid-cols-5 grid-rows-[auto_1fr] gap-2">
+            <div className="col-span-5">
+              <ContactModal>
+                <Button variant={'ghost'} className={`font-serif text-xl lg:text-2xl hover:cursor-pointer px-0 self-start justify-start`}>
+                  <div className='flex flex-col nav-link'>
+                    <div className="flex items-center gap-2 ">
+                    <span>Связаться со мной</span>
+                    <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+                  </div>
+                  </div>
+              </Button>
+            </ContactModal>
+            </div>
+            <div className="lg:col-start-2 col-span-5 lg:grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <div className="flex flex-wrap gap-6 col-span-3">{socialLinks.slice(0, 3).map((contact) => <a key={contact.label} href={contact.href} className="font-light lg:text-xl flex-1 text-right" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label}</a>)}</div>
+              <div className="flex flex-wrap gap-6 col-start-2 col-span-3">{socialLinks.slice(3).map((contact) => <a key={contact.label} href={contact.href} className="font-light lg:text-xl flex-1" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label}</a>)}</div>
+            </div>
+          </div>
+          <div className="mt-8 lg:ml-auto mx-auto grid h-20 w-20 place-items-center border hairline text-center">
+            <Image src="/images/qr-code.png" width={104} height={104} alt="QR Code" />
+          </div>
+          <p className="text-xs font-light text-center lg:col-span-8 border-t pt-6">© {new Date().getFullYear()} Ирина Коржель. Публичная оферта · Политика конфиденциальности</p>
         </div>
-        <div className="mt-14 grid gap-3 border-t hairline pt-5 text-[10px] text-foreground/65 sm:grid-cols-3">
-          {contacts.slice(0, 3).map((contact) => <a key={contact.label} href={contact.href} className="nav-link" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label} <span className="text-foreground">{contact.value}</span></a>)}
-          {contacts.slice(3).map((contact) => <a key={contact.label} href={contact.href} className="nav-link" data-testid={`link-contact-${contact.label.toLowerCase()}`}>{contact.label} <span className="text-foreground">{contact.value}</span></a>)}
-        </div>
-        <p className="mt-10 text-[10px] text-foreground/45">© {new Date().getFullYear()} Ирина Коржель</p>
+
       </div>
     </footer>
   );
