@@ -1,15 +1,19 @@
 import { ArrowUpRight } from 'lucide-react';
 import { processSteps, websiteTypes } from '@/lib/content';
 import type { ProcessStep, WebsiteType } from '@/lib/types';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
 
-export function ArrowLink({ children, href = '#contact', className = '' }: { children: string; href?: string; className?: string }) {
+export function ArrowLink({ children, className = '' }: { children: string; className?: string }) {
   return (
-    <a href={href} className={`${className}`} data-testid={`link-${children.toLowerCase().replace(/\s+/g, '-')}`}>
-      <div className="flex items-center gap-2 group">
-        <span>{children}</span>
-        <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+    <Button variant={'ghost'} className={cn(`font-serif text-2xl hover:cursor-pointer px-0`, className)}>
+      <div className='flex flex-col nav-link'>
+        <div className="flex items-center gap-2 ">
+          <span>{children}</span>
+          <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+        </div>
       </div>
-    </a>
+    </Button>
   );
 }
 

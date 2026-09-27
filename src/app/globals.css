@@ -92,7 +92,6 @@
 }
 .nav-link:hover::after {
   width: 100%;
-  opacity: 1;
 }
 .nav-link::after {
   content: '';
@@ -100,7 +99,7 @@
   width: 0;
   height: 0.5px;
   background-color: hsl(var(--foreground) / .62);
-  transition: width .25s ease, opacity .25s ease;
+  transition: width .25s ease;
 }
 .arrow-link { transition: gap .25s ease, opacity .25s ease; }
 .arrow-link:hover { gap: .75rem; opacity: .65; }
