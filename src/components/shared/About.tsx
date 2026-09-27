@@ -16,12 +16,14 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="aspect-[4/5] overflow-hidden bg-muted">
+            <div className="aspect-4/5 overflow-hidden bg-muted">
               <Image
                 src="/images/portrait.png"
                 alt="Ирина Коржель"
-                fill
-                className="object-cover"
+                width={0}
+                height={0}
+                sizes='100vw'
+                className="object-cover w-full"
               />
             </div>
           </motion.div>
