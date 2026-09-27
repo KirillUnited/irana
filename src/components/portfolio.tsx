@@ -52,7 +52,7 @@ export function ServiceItem({ item }: { item: WebsiteType }) {
       <span className="eyebrow text-foreground/55">{item.number}</span>
       <h3 className="serif mt-7 text-[clamp(1.2rem,2vw,1.7rem)] leading-[1.05]">{item.title}</h3>
       {item.description && <p className="mt-4 max-w-[16rem] text-[11px] leading-[1.5] text-foreground/70">{item.description}</p>}
-      {item.price && <><p className="mt-4 text-xs">{item.price}</p><ArrowLink className="mt-5" href="#contact">{item.actionLabel || 'Заказать'}</ArrowLink></>}
+      {item.price && <><p className="mt-4 text-xs">{item.price}</p><ArrowLink className="mt-5">{item.actionLabel || 'Заказать'}</ArrowLink></>}
     </article>
   );
 }

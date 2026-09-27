@@ -111,7 +111,7 @@ function ContactForm() {
             type="tel"
             required
             autoComplete="tel"
-            placeholder="+7"
+            placeholder="+375"
             className={cn(
               'h-12 rounded-none border-x-0 border-t-0 px-0',
               'border-border bg-transparent',
