@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 export function ArrowLink({ children, className = '' }: { children: string; className?: string }) {
   return (
-    <Button variant={'ghost'} className={cn(`font-serif text-2xl hover:cursor-pointer px-0`, className)}>
+    <Button variant={'ghost'} className={cn(`font-serif font-medium text-2xl hover:cursor-pointer px-0`, className)}>
       <div className='flex flex-col nav-link'>
         <div className="flex items-center gap-2 ">
           <span>{children}</span>
