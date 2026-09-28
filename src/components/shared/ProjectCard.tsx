@@ -10,14 +10,14 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
       <Link href={project.href || '/'} target="_blank" data-testid={`link-project-${project.number}`} className="block h-full">
     <Card className="group overflow-hidden rounded-none h-full">
-        <div className="aspect-4/3 overflow-hidden">
+        <div className="aspect-square overflow-hidden">
           <Image
             src={project.image}
             alt={project.imageAlt}
             sizes="100vw"
             width={0}
             height={0}
-            className="w-full object-cover transition-transform group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform group-hover:scale-105"
           />
         </div>
 
