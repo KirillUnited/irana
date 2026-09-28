@@ -63,7 +63,7 @@ export function Hero() {
             >
               <div className="hidden lg:block bg-background blur-3xl absolute inset-0"></div>
               <h1
-                className="font-serif text-[clamp(40px,9vw,140px)] text-right lg:text-right pointer-events-auto relative leading-none"
+                className="font-serif font-medium text-[clamp(40px,9vw,140px)] text-right lg:text-right pointer-events-auto relative leading-none"
               >
                 ВЕБ-ДИЗАЙН
               </h1>
@@ -79,7 +79,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <p
-                className="text-[clamp(64px,9vw,136px)] font-serif leading-none"
+                className="text-[clamp(64px,9vw,136px)] font-serif font-medium leading-none"
               >
                 UI/UX
               </p>

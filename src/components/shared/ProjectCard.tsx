@@ -23,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <CardContent className="p-4">
               <CardTitle className="text-balance">
                 <p className="text-foreground/55">{project.number}</p>
-                <h3 className="font-serif mt-2 text-[clamp(1.25rem,2.2vw,1.85rem)] line-clamp-3">{project.title}</h3>
+                <h3 className="font-serif font-medium mt-2 text-[clamp(1.25rem,2.2vw,1.85rem)] line-clamp-3">{project.title}</h3>
               </CardTitle>
               <div className="flex items-center mt-2 line-clamp-1">
                 <p className="text-xs leading-[1.55] text-foreground/65 line-clamp-1">{project.category}</p>

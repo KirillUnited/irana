@@ -12,7 +12,7 @@ export function Projects() {
         <div className="lg:grid grid-cols-8 gap-6">
           <div className="col-span-4 col-start-3 relative">
             <motion.h2
-              className="text-[clamp(36px,5vw,72px)] text-center font-serif"
+              className="text-[clamp(36px,5vw,72px)] text-center font-serif font-medium"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

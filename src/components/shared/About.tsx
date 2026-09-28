@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { StarIcon2 } from './Icons';
-import { Skills } from './Skills';
 
 export function About() {
   return (
@@ -26,10 +25,11 @@ export function About() {
                 height={0}
                 sizes='100vw'
                 quality={60}
+                loading="eager"
                 className="object-cover w-full"
               />
             </div>
-            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2" />
+            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2 -z-10" />
           </motion.div>
 
           {/* Text */}
@@ -40,7 +40,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-[clamp(64px,9vw,136px)] font-serif">
+            <h2 className="text-[clamp(64px,9vw,136px)] font-serif font-medium">
               ОБО МНЕ
             </h2>
             <div className="space-y-8 leading-snug tracking-tighter text-foreground/70 md:text-xl">
@@ -58,9 +58,6 @@ export function About() {
             </div>
           </motion.div>
         </div>
-      </div>
-      <div className="container">
-        <Skills/>
       </div>
     </section>
   );
