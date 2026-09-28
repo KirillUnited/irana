@@ -2,53 +2,58 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { StarIcon2 } from './Icons';
 
 export function About() {
   return (
-    <section id="about" className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-[1440px]">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+    <section id="about">
+      <div className="container">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           {/* Photo */}
           <motion.div
-            className="order-1 lg:order-none"
+            className="order-1 lg:order-0 relative col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="aspect-4/5 overflow-hidden bg-muted">
+            <div className="overflow-hidden bg-muted">
               <Image
                 src="/images/portrait.jpg"
                 alt="Ирина Коржель"
                 width={0}
                 height={0}
                 sizes='100vw'
+                quality={60}
                 className="object-cover w-full"
               />
             </div>
+            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2" />
           </motion.div>
 
           {/* Text */}
           <motion.div
-            className="order-2 flex flex-col justify-center lg:order-none"
+            className="order-2 flex flex-col lg:order-0 relative col-span-4 col-start-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-5xl leading-[0.9] md:text-6xl lg:text-8xl xl:text-9xl">
+            <h2 className="text-[clamp(64px,9vw,136px)] font-serif">
               ОБО МНЕ
             </h2>
-            <div className="mt-8 space-y-4 text-sm leading-relaxed text-foreground/70 md:text-base">
-              <p>
-                Привет, я Ирина — UI/UX дизайнер с фокусом на создании чистых, функциональных и эстетичных интерфейсов.
-              </p>
-              <p>
-                Мой подход к дизайну основан на понимании потребностей пользователей и бизнес-целей заказчика. Я верю, что хороший дизайн должен быть не только красивым, но и работать на результат.
-              </p>
-              <p>
-                Работаю с проектами разного масштаба — от лендингов до интернет-магазинов, помогая брендам найти свой уникальный визуальный язык.
-              </p>
+            <div className="space-y-8 leading-snug tracking-tighter text-foreground/70 md:text-xl">
+              <p className='text-4xl font-light'>Привет, меня зовут Ирина.</p>
+              <div className="flex flex-col lg:grid grid-cols-4 gap-4 lg:gap-20">
+                <p className='col-span-4'>
+                  Я начинающий веб-дизайнер, поэтому для меня Ваш проект — это не поток, а возможность создать что-то выдающееся для своего портфолио.
+                </p>
+                <p className='col-span-3 col-start-2'>
+                  Я уделю вашему сайту в 10 раз больше времени и внимания, чем перегруженный профи, и сделаю всё, чтобы результат превзошел ожидания и помог вашему бизнесу вырасти.
+                </p>
+                <p className='col-span-4'>
+                  Я гарантирую полную точность в проекте, современные тенденции и дизайн по цене ниже рыночной в обмен на подробный отзыв и возможность использовать проект в моем портфолио.</p>
+              </div>
             </div>
           </motion.div>
         </div>
