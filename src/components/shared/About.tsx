@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { StarIcon2 } from './Icons';
+import { Skills } from './Skills';
 
 export function About() {
   return (
@@ -57,6 +58,9 @@ export function About() {
             </div>
           </motion.div>
         </div>
+      </div>
+      <div className="container">
+        <Skills/>
       </div>
     </section>
   );

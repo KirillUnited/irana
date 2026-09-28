@@ -8,7 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
       <Link href={project.href || '/'} target="_blank" data-testid={`link-project-${project.number}`} className="block h-full">
         <Card className="group overflow-hidden rounded-none h-full">
-            <div className="aspect-square overflow-hidden">
+           <div className="aspect-square overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.imageAlt}
