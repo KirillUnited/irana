@@ -27,9 +27,9 @@ export function Hero() {
               </div>
 
               {/* Center: portrait image */}
-              <div className="col-span-2 col-start-2 w-full aspect-394/449 self-end">
+              <div className="col-span-2 col-start-2 w-full self-end">
                 <Image
-                  src="/images/portrait.png"
+                  src="/images/hero.jpg"
                   alt="Ирина Коржель"
                   width={0}
                   height={0}

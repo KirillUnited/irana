@@ -18,7 +18,7 @@ export function About() {
           >
             <div className="aspect-4/5 overflow-hidden bg-muted">
               <Image
-                src="/images/portrait.png"
+                src="/images/portrait.jpg"
                 alt="Ирина Коржель"
                 width={0}
                 height={0}
