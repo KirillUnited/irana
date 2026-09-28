@@ -11,7 +11,7 @@ export function About() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           {/* Photo */}
           <motion.div
-            className="order-1 lg:order-0 relative col-span-3"
+            className="order-1 lg:order-0 relative lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,7 +34,7 @@ export function About() {
 
           {/* Text */}
           <motion.div
-            className="order-2 flex flex-col lg:order-0 relative col-span-4 col-start-5"
+            className="order-2 flex flex-col lg:order-0 relative lg:col-span-4 lg:col-start-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

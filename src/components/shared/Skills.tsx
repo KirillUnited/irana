@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export function Skills() {
   return (
-    <section className="py-10">
+    <section className="py-10 border-b">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Skills */}
@@ -19,7 +19,7 @@ export function Skills() {
             <h2 className="text-[clamp(36px,5vw,64px)] font-serif font-medium">
               МОИ НАВЫКИ
             </h2>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-2 lg:gap-6">
               {skills.map((skill, index) => (
                 <motion.li
                   key={skill.id}
@@ -47,7 +47,7 @@ export function Skills() {
             <h2 className="text-[clamp(36px,5vw,64px)] font-serif font-medium">
               МОИ ИНСТРУМЕНТЫ
             </h2>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-2 lg:gap-6">
               {tools.map((tool, index) => (
                 <motion.li
                   key={tool.id}
