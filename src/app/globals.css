@@ -216,6 +216,11 @@
 @utility container {
     padding-inline: 1rem;
     margin-inline: auto;
+
+    @media (width >= 96rem) {
+      max-width: 105rem;
+    }
+
 }
 
 .site-shell { width: min(100% - 2rem, 1280px); margin-inline: auto; }
