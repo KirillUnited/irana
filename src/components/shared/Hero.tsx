@@ -20,7 +20,7 @@ export function Hero() {
               <div className="hidden lg:flex items-end lg:absolute left-0 bottom-0">
                 <div className="hidden lg:block bg-background blur-3xl absolute inset-0"></div>
                 <p
-                  className="text-[clamp(64px,9vw,136px)] relative z-10"
+                  className="text-[clamp(64px,9vw,136px)] relative z-10 font-serif"
                 >
                   UI/UX
                 </p>
