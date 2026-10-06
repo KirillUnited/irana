@@ -21,7 +21,7 @@ export function Projects() {
               МОИ РАБОТЫ
             </motion.h2>
 
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 mt-10 relative">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 mt-10 relative">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
