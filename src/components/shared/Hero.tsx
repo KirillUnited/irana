@@ -54,7 +54,6 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Heading overlay: ВЕБ-ДИЗАЙН — positioned over portrait on right */}
             <motion.div className="lg:absolute lg:-top-7 lg:right-0 lg:pointer-events-none flex lg:items-start lg:justify-end"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
