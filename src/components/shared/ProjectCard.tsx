@@ -16,7 +16,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 width={0}
                 height={0}
                 quality={60}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                className="w-full h-full object-contain transition-transform group-hover:scale-105"
               />
             </div>
 
@@ -29,7 +29,6 @@ export function ProjectCard({ project }: { project: Project }) {
                 <p className="text-xs leading-[1.55] text-foreground/65 line-clamp-1">{project.category}</p>
                 <ArrowUpRight className="mt-1 shrink-0 opacity-50 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={18} strokeWidth={1} />
               </div>
-            <CardDescription className="mt-4 text-pretty line-clamp-3">{project.description}</CardDescription>
             </CardContent>
         </Card>
       </Link>
