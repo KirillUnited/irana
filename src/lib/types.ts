@@ -38,7 +38,7 @@ export type ProcessStep = {
   id: string;
   number: string;
   title: string;
-  description: string;
+  description: string[];
 };
 
 export type WebsiteType = {
