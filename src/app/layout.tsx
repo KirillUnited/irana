@@ -65,7 +65,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="h-full antialiased" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} min-h-dvh flex flex-col font-sans antialiased`}>
+      <body className={`${playfairDisplay.variable} min-h-dvh flex flex-col font-sans antialiased overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
