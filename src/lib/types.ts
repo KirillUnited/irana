@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export type NavigationItem = {
   label: string;
   href: string;
@@ -29,14 +31,14 @@ export type Skill = {
 export type Tool = {
   id: string;
   name: string;
-  icon?: string;
+  icon?: any;
 };
 
 export type ProcessStep = {
   id: string;
   number: string;
   title: string;
-  description: string;
+  description: string[];
 };
 
 export type WebsiteType = {
