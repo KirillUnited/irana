@@ -6,7 +6,7 @@ import { StarIcon2 } from './Icons';
 
 export function About() {
   return (
-    <section id="about">
+    <section id="about" className="overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           {/* Photo */}
