@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
 import { processSteps, websiteTypes } from '@/lib/content';
 import type { ProcessStep, WebsiteType } from '@/lib/types';
 import { Button } from './ui/button';
@@ -10,7 +10,7 @@ export function ArrowLink({ children, className = '' }: { children: string; clas
       <div className='flex flex-col nav-link'>
         <div className="flex items-center gap-2 ">
           <span>{children}</span>
-          <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+          <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
         </div>
       </div>
     </Button>

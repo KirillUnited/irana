@@ -1,7 +1,7 @@
 import { socialLinks } from '@/lib/content';
 import { ContactModal } from './Contact';
 import { Button } from '../ui/button';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
 import Image from 'next/image';
 
 export function Footer() {
@@ -25,7 +25,7 @@ export function Footer() {
                   <div className='flex flex-col nav-link'>
                     <div className="flex items-center gap-2 ">
                     <span>Связаться со мной</span>
-                    <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+                    <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
                   </div>
                   </div>
               </Button>
