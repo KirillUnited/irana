@@ -7,7 +7,7 @@ import {StarIcon} from './Icons';
 
 export function Projects() {
   return (
-    <section id="works" className='border-b py-10 lg:py-20'>
+    <section id="works" className='border-b py-10 lg:py-20 overflow-hidden'>
       <div className="container ">
         <div className="lg:grid grid-cols-8 gap-6">
           <div className="col-span-4 col-start-3 relative">
