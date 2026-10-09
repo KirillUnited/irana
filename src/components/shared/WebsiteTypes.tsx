@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 
 export function WebsiteTypes() {
   return (
-    <section id="services" className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-[1440px]">
+    <section id="services" className="py-16 lg:py-24">
+      <div className="container">
         <motion.h2
-          className="text-5xl leading-[0.9] md:text-6xl lg:text-8xl xl:text-9xl"
+          className="text-[clamp(64px,8vw,136px)] leading-none font-serif"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 
 export function Process() {
   return (
-    <section id="process" className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-[1440px]">
-        <motion.h2 
-          className="text-5xl leading-[0.9] md:text-6xl lg:text-8xl xl:text-9xl"
+    <section id="process" className="py-16 lg:py-24">
+      <div className="container">
+        <motion.h2
+          className="text-[clamp(64px,8vw,136px)] leading-none font-serif"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -16,12 +16,12 @@ export function Process() {
         >
           ЭТАПЫ РАБОТЫ
         </motion.h2>
-        
+
         {/* Mobile: Vertical timeline */}
         <div className="mt-12 flex flex-col gap-10 lg:hidden">
           {processSteps.map((step, index) => (
-            <motion.div 
-              key={step.id} 
+            <motion.div
+              key={step.id}
               className="border-b border-border pb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -38,8 +38,8 @@ export function Process() {
         {/* Desktop: Grid layout */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:mt-12">
           {processSteps.map((step, index) => (
-            <motion.div 
-              key={step.id} 
+            <motion.div
+              key={step.id}
               className="border-t border-border pt-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
