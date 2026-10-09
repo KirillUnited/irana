@@ -1,5 +1,5 @@
 'use client';
-import { ArrowUpRight, Menu } from 'lucide-react';
+import { ArrowRightIcon, Menu } from 'lucide-react';
 import { navigation } from '@/lib/content';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -29,7 +29,7 @@ export function Header() {
               <div className='flex flex-col nav-link'>
                 <div className="flex items-center gap-2 ">
                 <span>Связаться со мной</span>
-                <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+                <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
               </div>
                 </div>
             </Button>
@@ -58,7 +58,7 @@ export function Header() {
                       <div className='flex flex-col nav-link'>
                         <div className="flex items-center gap-2 ">
                         <span>Связаться со мной</span>
-                        <ArrowUpRight className="arrow-link-icon" size={24} strokeWidth={1.2} />
+                        <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
                       </div>
                         </div>
                     </Button>
