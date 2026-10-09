@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 export function Process() {
   return (
-    <section id="process" className="py-16 lg:py-24">
+    <section id="process" className="py-16 lg:py-24 border-b">
       <div className="container">
         <motion.h2
           className="text-[clamp(64px,8vw,136px)] leading-none font-serif text-center"
@@ -34,7 +34,7 @@ export function Process() {
             >
               <span className="text-4xl leading-none text-foreground/55">{step.number}</span>
               <h3 className="mt-4 text-lg font-medium">{step.title}</h3>
-              <ul className="mt-5 font-light list-disc">
+              <ul className="mt-5 font-light list-disc pl-6">
                 {step.description.map((item: string) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -76,10 +76,10 @@ export function Process() {
             </motion.div>
           )})}
         </div>
-        <div className='flex flex-wrap justify-between items-center mt-8 lg:mt-16'>
+        <div className='flex flex-wrap justify-between items-center mt-8 lg:mt-16 gap-6'>
           <p>*Этапы разработки могут меняться в зависимости от задачи и формата проекта, но обычно состоят из пяти основных этапов.</p>
           <ContactModal>
-            <Button variant={'ghost'} size={'lg'} className={`hidden lg:inline-flex font-serif  font-medium text-2xl hover:cursor-pointer px-0`}>
+            <Button variant={'ghost'} size={'lg'} className={`font-serif font-medium text-2xl hover:cursor-pointer px-0`}>
               <div className='flex flex-col nav-link'>
                 <div className="flex items-center gap-2 ">
                 <span>Связаться со мной</span>
