@@ -8,7 +8,7 @@ export function Process() {
     <section id="process" className="py-16 lg:py-24">
       <div className="container">
         <motion.h2
-          className="text-[clamp(64px,8vw,136px)] leading-none font-serif"
+          className="text-[clamp(64px,8vw,136px)] leading-none font-serif text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -51,7 +51,7 @@ export function Process() {
                 <span className="mt-1 text-xs uppercase tracking-widest text-foreground/55">этап</span>
               </div>
               <h3 className="mt-9 text-sm font-medium">{step.title}</h3>
-              <p className="mt-2 max-w-[12rem] text-xs leading-[1.55] text-foreground/60">{step.description}</p>
+              <p className="mt-2 max-w-48 text-xs leading-[1.55] text-foreground/60">{step.description}</p>
             </motion.div>
           ))}
         </div>

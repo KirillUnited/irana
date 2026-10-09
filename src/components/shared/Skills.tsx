@@ -16,7 +16,7 @@ export function Skills() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-[clamp(36px,5vw,64px)] font-serif font-medium">
+            <h2 className="text-[clamp(36px,4vw,64px)] font-serif font-medium leading-none">
               МОИ НАВЫКИ
             </h2>
             <ul className="flex flex-col gap-2 lg:gap-6">
@@ -44,23 +44,26 @@ export function Skills() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-[clamp(36px,5vw,64px)] font-serif font-medium">
+            <h2 className="text-[clamp(36px,4vw,64px)] font-serif font-medium leading-none">
               МОИ ИНСТРУМЕНТЫ
             </h2>
-            <ul className="flex flex-col gap-2 lg:gap-6">
-              {tools.map((tool, index) => (
+            <ul className="flex flex-col">
+              {tools.map((tool, index) => {
+                const Icon = tool.icon;
+                return (
                 <motion.li
                   key={tool.id}
-                  className="lg:text-5xl font-light max-lg:ml-0!"
+                  className="lg:text-5xl font-light max-lg:ml-0! flex gap-6 items-center"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + index * 0.05 }}
                   style={{ marginLeft: `${index * 100}px` }}
-                >
-                  {tool.name}
+                  >
+                    <Icon/>
+                  <span className='hidden lg:block'>{tool.name}</span>
                 </motion.li>
-              ))}
+              )})}
             </ul>
           </motion.div>
         </div>

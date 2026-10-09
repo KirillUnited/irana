@@ -9,6 +9,8 @@ import type {
   ContactInfo,
 } from "./types";
 
+import { Figma, AI, Photoshop } from '@/components/shared/Icons';
+
 export const siteConfig = {
   seo: {
     title: 'Irina Korzhel - Portfolio',
@@ -96,7 +98,7 @@ export const skills: Skill[] = [
 ];
 
 export const tools: Tool[] = [
-  { id: 'figma', name: 'Figma' },
-  { id: 'ai', name: 'AI' },
-  { id: 'photoshop', name: 'Photoshop' },
+  { id: 'figma', name: 'Figma', icon: Figma },
+  { id: 'ai', name: 'AI', icon: AI },
+  { id: 'photoshop', name: 'Photoshop', icon: Photoshop },
 ];
