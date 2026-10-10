@@ -67,7 +67,7 @@ export function Process() {
               <div>
                 <h3 className="text-4xl font-light">
                   {step.title}</h3>
-                <ul className="mt-5 font-light list-disc">
+                <ul className="mt-5 font-light list-disc pl-6">
                   {step.description.map((item: string) => (
                       <li key={item}>{item}</li>
                     ))}
