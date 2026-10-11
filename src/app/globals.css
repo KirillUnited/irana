@@ -211,6 +211,19 @@
     background-image: linear-gradient(hsl(var(--foreground) / .035) 1px, transparent 1px);
     background-size: 100% 5rem;
   }
+  .projects-grid .project-card {
+    transform-origin: bottom;
+    transition: scale 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .projects-grid:hover .project-card {
+    scale: 0.9;
+  }
+
+  .projects-grid .project-card:hover {
+    scale: 1.1;
+  }
 }
 
 @utility container {

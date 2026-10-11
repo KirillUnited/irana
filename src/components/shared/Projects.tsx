@@ -21,10 +21,11 @@ export function Projects() {
               МОИ РАБОТЫ
             </motion.h2>
 
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 mt-10 relative">
+            <div className="projects-grid grid grid-cols-1 gap-4 lg:grid-cols-2 mt-10 relative">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
+                  className='project-card'
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
