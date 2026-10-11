@@ -57,22 +57,22 @@ export function WebsiteTypes() {
                 <div
                   className={`grid transition-all duration-500 ease-in-out ${
                     isHovered
-                      ? 'grid-rows-[1fr] opacity-100 mt-4'
+                      ? 'grid-rows-[1fr] opacity-100 mt-5'
                       : 'grid-rows-[0fr] opacity-0 mt-0'
                   }`}
                 >
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden flex flex-col gap-5">
                     {type.description && (
                       <p className="font-medium text-xl">{type.description}</p>
                     )}
 
                     {type.price && (
-                      <>
-                        <p className="mt-4 text-3xl font-light">{type.price}</p>
+                      <div className='flex flex-wrap gap-2 justify-between items-center'>
+                        <p className="text-3xl font-light">{type.price}</p>
                         <ArrowLink className="font-sans font-normal">
                           {type.actionLabel || 'Заказать'}
                         </ArrowLink>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>
