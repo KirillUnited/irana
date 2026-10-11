@@ -227,14 +227,14 @@ function ContactLinks() {
     },
     {
       label: 'Telegram',
-      value: '@irinakorzh',
+      value: '@webdesigner_Korzhel',
       href: contactInfo.telegram || '#',
       icon: Send,
       external: true,
     },
     {
       label: 'Instagram',
-      value: '@irinakorzh',
+      value: '@webdesigner_Korzhel',
       href: contactInfo.instagram || '#',
       icon: Instagram,
       external: true,
