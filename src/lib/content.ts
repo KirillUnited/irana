@@ -137,11 +137,11 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const contactInfo: ContactInfo = {
-  phone: '+375(44)576-44-76',
-  email: 'hello@irinakorzh.by',
+  phone: '+375 (44) 576-44-76',
+  email: 'iren_korzhel@mail.ru',
   viber: 'viber://chat?number=%2B375445764476',
   telegram: 'https://t.me/webdesigner_Korzhel',
-  behance: 'https://behance.net/',
+  behance: 'https://www.behance.net/3e34ec89',
   instagram: 'https://instagram.com/',
   qrCode: '/images/qr-code.png',
 };
