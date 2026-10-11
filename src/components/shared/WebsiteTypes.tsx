@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { websiteTypes } from '@/lib/content';
 import { ArrowLink } from '@/components/portfolio';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export function WebsiteTypes() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -45,7 +46,9 @@ export function WebsiteTypes() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredIndex(index)}
               >
-                <div className="flex flex-wrap gap-5 justify-between">
+                <div className={cn("flex flex-col flex-wrap gap-5 justify-between", {
+                  'flex-row': isHovered
+                })}>
                   <span className="text-3xl font-light">{type.number}</span>
                   <h3 className="text-3xl font-light">{type.title}</h3>
                 </div>
