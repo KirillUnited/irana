@@ -86,28 +86,28 @@ export function WebsiteTypes() {
           {websiteTypes.map((type, index) => (
             <motion.article
               key={type.id}
-              className="relative min-h-50 border-foreground py-6 border-b"
+              className="relative min-h-50 border-foreground py-6 border-b flex flex-col gap-5"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="flex flex-wrap gap-5 justify-between">
+              <div className="flex flex-wrap gap-4 justify-between">
                 <span className="text-3xl font-light">{type.number}</span>
                 <h3 className="text-3xl font-light">{type.title}</h3>
               </div>
 
               {type.description && (
-                <p className="mt-4 font-medium text-xl">{type.description}</p>
+                <p className="font-medium text-xl">{type.description}</p>
               )}
 
               {type.price && (
-                <>
-                  <p className="mt-4 text-3xl font-light">{type.price}</p>
+                <div className='flex flex-wrap gap-2 justify-between items-center'>
+                  <p className="text-3xl font-light">{type.price}</p>
                   <ArrowLink className="font-sans font-normal">
                     {type.actionLabel || 'Заказать'}
                   </ArrowLink>
-                </>
+                </div>
               )}
             </motion.article>
           ))}
