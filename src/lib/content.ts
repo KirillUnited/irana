@@ -13,8 +13,8 @@ import { Figma, AI, Photoshop } from '@/components/shared/Icons';
 
 export const siteConfig = {
   seo: {
-    title: 'Irina Korzhel - Portfolio',
-    description: '',
+    title: 'Услуги веб-дизайна и UI/UX',
+    description: 'Профессиональный UI/UX дизайн и создание работающих сайтов. Разработка Landing Page (от 300 BYN), многостраничных сайтов, интернет-магазина или оформление карточек для маркетплейсов по выгодной ценеи инфографики. Современный дизайн для вашего бизнеса!',
   },
 };
 
@@ -103,7 +103,7 @@ export const processSteps: ProcessStep[] = [
 ];
 
 export const websiteTypes: WebsiteType[] = [
-  { id: 'landing', number: '01', title: 'Landing Page', 
+  { id: 'landing', number: '01', title: 'Landing Page',
     description: 'Сайт представляет из себя одностраничник (лендинг пейдж). Поэтому вся информация представлена на одной страницей по блокам. Первый экран: Заголовок с главным предложением (УТП), яркая картинка или видео и кнопка действия. Офер / Описание товара: Характеристики, цены, варианты использования. Отзывы реальных клиентов, кейсы, сертификаты, контакты.',
     price: 'от 300 BYN',
     actionLabel: 'Заказать',

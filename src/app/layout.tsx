@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: ['/apple-touch-icon.png'],
     type: 'website',
     locale: SITE_LOCALE,
-    siteName: 'ArtMarketPrint',
+    siteName: 'webdevik.org',
     url: SITE_URL,
   },
   twitter: {
