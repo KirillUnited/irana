@@ -23,8 +23,8 @@ const APP_ENV = process.env.NEXT_PUBLIC_APP_ENV || '';
 const IS_STAGING = APP_ENV === 'staging';
 
 export const metadata: Metadata = {
-  title: "Irina Korzhel - Portfolio",
-  description: "Portfolio of Irina Korzhel, a web designer",
+  title: `${siteConfig.seo.title || ''}`,
+  description: `${siteConfig.seo.description}`,
   icons: {
     icon: '/favicon.ico',
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: ['/apple-touch-icon.png'],
     type: 'website',
     locale: SITE_LOCALE,
-    siteName: 'ArtMarketPrint',
+    siteName: 'webdevik.org',
     url: SITE_URL,
   },
   twitter: {
