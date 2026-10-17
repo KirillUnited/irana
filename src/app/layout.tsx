@@ -23,11 +23,16 @@ const APP_ENV = process.env.NEXT_PUBLIC_APP_ENV || '';
 const IS_STAGING = APP_ENV === 'staging';
 
 export const metadata: Metadata = {
-  title: `${siteConfig.seo.title || ''}`,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${siteConfig.seo.title} | Создание сайтов под ключ — Ирина Коржель`,
+    template: `%s | Создание сайтов под ключ — Ирина Коржель`,
+  },
   description: `${siteConfig.seo.description}`,
   icons: {
     icon: '/favicon.ico',
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: `${siteConfig.seo.title || ''}`,
     description: `${siteConfig.seo.description}`,
