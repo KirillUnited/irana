@@ -35,6 +35,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { contactInfo } from '@/lib/content';
 import { contactFormSchema, type ContactFormData } from '@/lib/forms';
+import { sendTelegramMessage } from '@/app/actions/telegram';
 
 interface ContactModalProps {
   children?: React.ReactNode;
@@ -51,8 +52,9 @@ interface ContactModalTriggerProps {
 function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState<Partial<Record<keyof ContactFormData, string>>>({});
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -79,8 +81,27 @@ function ContactForm() {
     }
 
     setErrors({});
-    // Backend integration can be added here later.
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const telegramResult = await sendTelegramMessage(data);
+
+      if (telegramResult.success) {
+        setSubmitted(true);
+      } else {
+        console.error('Telegram send failed:', telegramResult.error);
+        setErrors({
+          message: telegramResult.error || 'Не удалось отправить сообщение',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setErrors({
+        message: 'Произошла ошибка при отправке',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -213,12 +234,13 @@ function ContactForm() {
       <div className="flex flex-col items-start gap-3">
         <Button
           type="submit"
+          disabled={isSubmitting || submitted}
           className={cn(
             'font-serif text-lg font-normal cursor-pointer',
           )}
           size={'lg'}
         >
-          {submitted ? 'Отправлено' : 'Отправить'}
+          {isSubmitting ? 'Отправка...' : submitted ? 'Отправлено' : 'Отправить'}
         </Button>
 
         {submitted && (
@@ -226,7 +248,7 @@ function ContactForm() {
             className="font-sans text-sm text-muted-foreground"
             role="status"
           >
-            Спасибо! Форма готова к подключению отправки.
+            Спасибо! Сообщение отправлено.
           </p>
         )}
       </div>
