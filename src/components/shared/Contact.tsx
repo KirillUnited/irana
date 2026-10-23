@@ -34,6 +34,7 @@ import { Button } from '@/components/ui/button';
 
 import { cn } from '@/lib/utils';
 import { contactInfo } from '@/lib/content';
+import { contactFormSchema, type ContactFormData } from '@/lib/forms';
 
 interface ContactModalProps {
   children?: React.ReactNode;
@@ -49,17 +50,35 @@ interface ContactModalTriggerProps {
 
 function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
+  const [errors, setErrors] = React.useState<Partial<Record<keyof ContactFormData, string>>>({});
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    const data: ContactFormData = {
+      name: formData.get('name') as string,
+      phone: formData.get('phone') as string,
+      email: formData.get('email') as string,
+      message: formData.get('message') as string,
+    };
+
+    const result = contactFormSchema.safeParse(data);
+
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.issues.forEach((issue) => {
+        if (issue.path[0]) {
+          fieldErrors[issue.path[0] as keyof ContactFormData] = issue.message;
+        }
+      });
+      setErrors(fieldErrors);
       return;
     }
 
+    setErrors({});
     // Backend integration can be added here later.
     setSubmitted(true);
   }
@@ -68,7 +87,7 @@ function ContactForm() {
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-6"
-      noValidate={false}
+      noValidate
     >
       <div className="grid gap-5">
         <div className="grid gap-2">
@@ -83,7 +102,6 @@ function ContactForm() {
             id="contact-name"
             name="name"
             type="text"
-            required
             autoComplete="name"
             placeholder="Ваше имя"
             className={cn(
@@ -93,8 +111,12 @@ function ContactForm() {
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
               'text-base',
+              errors.name && 'border-destructive',
             )}
           />
+          {errors.name && (
+            <p className="font-sans text-sm text-red-500">{errors.name}</p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -109,7 +131,6 @@ function ContactForm() {
             id="contact-phone"
             name="phone"
             type="tel"
-            required
             autoComplete="tel"
             placeholder="+375"
             className={cn(
@@ -119,8 +140,12 @@ function ContactForm() {
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
               'text-base',
+              errors.phone && 'border-destructive',
             )}
           />
+          {errors.phone && (
+            <p className="font-sans text-sm text-red-500">{errors.phone}</p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -135,7 +160,6 @@ function ContactForm() {
             id="contact-email"
             name="email"
             type="email"
-            required
             autoComplete="email"
             placeholder="you@example.com"
             className={cn(
@@ -145,8 +169,12 @@ function ContactForm() {
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
               'text-base',
+              errors.email && 'border-destructive',
             )}
           />
+          {errors.email && (
+            <p className="font-sans text-sm text-red-500">{errors.email}</p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -173,8 +201,12 @@ function ContactForm() {
               'focus-visible:border-foreground',
               'focus-visible:ring-0',
               'text-base',
+              errors.message && 'border-destructive',
             )}
           />
+          {errors.message && (
+            <p className="font-sans text-sm text-red-500">{errors.message}</p>
+          )}
         </div>
       </div>
 
