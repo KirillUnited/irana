@@ -1,10 +1,9 @@
 'use server';
 
-import { ContactFormData } from '@/lib/forms';
+import { contactFormSchema, type ContactFormData } from '@/lib/forms';
 
 interface TelegramSendOptions {
   chatId?: string;
-  channelId?: string;
 }
 
 interface TelegramResponse {
@@ -12,20 +11,37 @@ interface TelegramResponse {
   description?: string;
 }
 
+function escapeHtml(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 /**
- * Send contact form data to Telegram chat or channel
+ * Send contact form data to a Telegram chat or channel
  * @param data - Contact form data (name, phone, email, message)
- * @param options - Optional chat or channel ID
+ * @param options - Optional chat ID override
  * @returns Success status and error description if failed
  */
 export async function sendTelegramMessage(
   data: ContactFormData,
   options: TelegramSendOptions = {},
 ): Promise<{ success: boolean; error?: string }> {
-  const { TELEGRAM_BOT_TOKEN, NEXT_PUBLIC_TELEGRAM_GROUP_CHAT_ID, NEXT_PUBLIC_TELEGRAM_THREAD_ID } =
-    process.env;
+  // Server actions can be invoked directly, so validate again on the server
+  const parsed = contactFormSchema.safeParse(data);
 
-  const chatId = options.chatId || NEXT_PUBLIC_TELEGRAM_GROUP_CHAT_ID;
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: parsed.error.issues[0]?.message ?? 'Invalid form data',
+    };
+  }
+
+  const {
+    TELEGRAM_BOT_TOKEN,
+    NEXT_PUBLIC_TELEGRAM_GROUP_CHAT_ID: TELEGRAM_GROUP_CHAT_ID,
+    NEXT_PUBLIC_TELEGRAM_THREAD_ID: TELEGRAM_THREAD_ID,
+  } = process.env;
+
+  const chatId = options.chatId || TELEGRAM_GROUP_CHAT_ID;
 
   if (!TELEGRAM_BOT_TOKEN) {
     return {
@@ -41,21 +57,19 @@ export async function sendTelegramMessage(
     };
   }
 
-  // Format message with contact data
-  const message = `
+  const { name, phone, email, message } = parsed.data;
+
+  const text = `
 📝 <b>Новая заявка с сайта</b>
 
-👤 <b>Имя:</b> ${data.name}
-📱 <b>Телефон:</b> ${data.phone}
-📧 <b>Email:</b> ${data.email}
+👤 <b>Имя:</b> ${escapeHtml(name)}
+📱 <b>Телефон:</b> ${escapeHtml(phone)}
+📧 <b>Email:</b> ${escapeHtml(email)}
 
 💬 <b>Сообщение:</b>
-${data.message}
+${escapeHtml(message)}
   `.trim();
 
-  const errors: string[] = [];
-
-  // Send to all configured targets
   try {
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
@@ -66,29 +80,26 @@ ${data.message}
       },
       body: JSON.stringify({
         chat_id: chatId,
-        text: message,
+        text,
         parse_mode: 'HTML',
-        message_thread_id: NEXT_PUBLIC_TELEGRAM_THREAD_ID,
+        ...(TELEGRAM_THREAD_ID ? { message_thread_id: Number(TELEGRAM_THREAD_ID) } : {}),
       }),
     });
 
     const result: TelegramResponse = await response.json();
 
     if (!result.ok) {
-      errors.push(`Failed to send: ${result.description || 'Unknown error'}`);
+      return {
+        success: false,
+        error: `Failed to send: ${result.description || 'Unknown error'}`,
+      };
     }
   } catch (error) {
-    errors.push(`Failed to send: ${error instanceof Error ? error.message : 'Unknown error'}`);
-  }
-
-  if (errors.length > 0) {
     return {
       success: false,
-      error: errors.join('; '),
+      error: `Failed to send: ${error instanceof Error ? error.message : 'Unknown error'}`,
     };
   }
 
-  return {
-    success: true,
-  };
+  return { success: true };
 }
