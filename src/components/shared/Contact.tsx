@@ -438,7 +438,7 @@ function ContactModalInner({
 const SUCCESS_ALERT_DURATION_MS = 5000;
 
 export function ContactModal(props: ContactModalProps) {
-  const [showSuccess, setShowSuccess] = React.useState(true);
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   React.useEffect(() => {
     if (!showSuccess) return;
