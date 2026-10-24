@@ -10,6 +10,7 @@ import {
   ExternalLink,
   LoaderIcon,
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -51,7 +52,6 @@ interface ContactModalTriggerProps {
 }
 
 function ContactForm() {
-  const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -78,6 +78,7 @@ function ContactForm() {
         }
       });
       setErrors(fieldErrors);
+      toast.error('Проверьте правильность заполнения полей');
       return;
     }
 
@@ -88,21 +89,24 @@ function ContactForm() {
       const telegramResult = await sendTelegramMessage(data);
 
       if (telegramResult.success) {
-        setSubmitted(true);
+        toast.success('Спасибо! Сообщение отправлено.', {
+          description: 'Я свяжусь с вами в ближайшее время.',
+        });
+        // Reset only on success, so the user doesn't lose their input on failure
+        form.reset();
       } else {
         console.error('Telegram send failed:', telegramResult.error);
-        setErrors({
-          message: telegramResult.error || 'Не удалось отправить сообщение',
+        toast.error('Не удалось отправить сообщение', {
+          description: 'Попробуйте ещё раз или свяжитесь со мной напрямую.',
         });
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      setErrors({
-        message: 'Произошла ошибка при отправке',
+      toast.error('Произошла ошибка при отправке', {
+        description: 'Попробуйте ещё раз или свяжитесь со мной напрямую.',
       });
     } finally {
       setIsSubmitting(false);
-      form.reset();
     }
   }
 
@@ -212,26 +216,18 @@ function ContactForm() {
       <div className="flex flex-col items-start gap-3">
         <Button
           type="submit"
-          disabled={isSubmitting || submitted}
+          disabled={isSubmitting}
           className={cn('cursor-pointer font-serif text-lg font-normal')}
           size={'lg'}
         >
           {isSubmitting ? (
             <>
-              <LoaderIcon className={'animate-spin duration-700'} /> 'Отправка...'
+              <LoaderIcon className={'animate-spin duration-700'} /> Отправка...
             </>
-          ) : submitted ? (
-            'Отправлено'
           ) : (
             'Отправить'
           )}
         </Button>
-
-        {submitted && (
-          <p className="text-muted-foreground font-sans text-sm" role="status">
-            Спасибо! Сообщение отправлено.
-          </p>
-        )}
       </div>
     </form>
   );
