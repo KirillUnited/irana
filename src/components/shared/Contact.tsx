@@ -9,6 +9,8 @@ import {
   Phone,
   ExternalLink,
   LoaderIcon,
+  CheckCircle2Icon,
+  XIcon,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -30,6 +32,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -89,9 +92,6 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
       const telegramResult = await sendTelegramMessage(data);
 
       if (telegramResult.success) {
-        toast.success('Спасибо! Сообщение отправлено.', {
-          description: 'Я свяжусь с вами в ближайшее время.',
-        });
         // Reset only on success, so the user doesn't lose their input on failure
         form.reset();
         onSuccess?.();
@@ -359,7 +359,12 @@ function ContactContent({ onSuccess }: { onSuccess?: () => void }) {
   );
 }
 
-export function ContactModal({ children, open, onOpenChange }: ContactModalProps) {
+function ContactModalInner({
+  children,
+  open,
+  onOpenChange,
+  onSent,
+}: ContactModalProps & { onSent: () => void }) {
   const isMobile = useIsMobile();
 
   // Support both controlled (open/onOpenChange props) and uncontrolled (trigger) usage
@@ -372,7 +377,10 @@ export function ContactModal({ children, open, onOpenChange }: ContactModalProps
     onOpenChange?.(next);
   };
 
-  const handleSuccess = () => handleOpenChange(false);
+  const handleSuccess = () => {
+    handleOpenChange(false);
+    onSent();
+  };
 
   if (isMobile) {
     return (
@@ -424,6 +432,58 @@ export function ContactModal({ children, open, onOpenChange }: ContactModalProps
         </div>
       </DialogContent>
     </Dialog>
+  );
+}
+
+const SUCCESS_ALERT_DURATION_MS = 5000;
+
+export function ContactModal(props: ContactModalProps) {
+  const [showSuccess, setShowSuccess] = React.useState(true);
+
+  React.useEffect(() => {
+    if (!showSuccess) return;
+    const timer = window.setTimeout(() => setShowSuccess(false), SUCCESS_ALERT_DURATION_MS);
+    return () => window.clearTimeout(timer);
+  }, [showSuccess]);
+
+  return (
+    <>
+      <ContactModalInner {...props} onSent={() => setShowSuccess(true)} />
+
+      {showSuccess && (
+        <div className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <Alert
+            role="status"
+            className={cn(
+              'pointer-events-auto relative max-w-lg',
+              'border-border bg-background rounded-none border p-6 pr-12 shadow-lg',
+              'animate-in fade-in-0 zoom-in-95 duration-200',
+            )}
+          >
+            <div className={'grid grid-cols-[auto_1fr] items-start gap-4'}>
+              <CheckCircle2Icon aria-hidden="true" />
+              <div>
+                <AlertTitle className="font-serif text-2xl leading-none font-normal">
+                  Спасибо! Сообщение отправлено.
+                </AlertTitle>
+                <AlertDescription className="font-sans text-lg">
+                  Я свяжусь с вами в ближайшее время.
+                </AlertDescription>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowSuccess(false)}
+              aria-label="Закрыть"
+              className="absolute top-3 right-3 cursor-pointer opacity-60 transition-opacity hover:opacity-100"
+            >
+              <XIcon className="size-4" />
+            </button>
+          </Alert>
+        </div>
+      )}
+    </>
   );
 }
 
