@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import {
-  Mail,
-  ActivityIcon as Instagram,
-  Send,
-  Phone,
-  ExternalLink,
-} from 'lucide-react';
+import { Mail, ActivityIcon as Instagram, Send, Phone, ExternalLink } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -105,17 +99,10 @@ function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-6"
-      noValidate
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
       <div className="grid gap-5">
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-name"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-name" className="font-sans text-sm">
             Имя
           </label>
 
@@ -135,16 +122,11 @@ function ContactForm() {
               errors.name && 'border-destructive',
             )}
           />
-          {errors.name && (
-            <p className="font-sans text-sm text-red-500">{errors.name}</p>
-          )}
+          {errors.name && <p className="font-sans text-sm text-red-500">{errors.name}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-phone"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-phone" className="font-sans text-sm">
             Телефон
           </label>
 
@@ -164,16 +146,11 @@ function ContactForm() {
               errors.phone && 'border-destructive',
             )}
           />
-          {errors.phone && (
-            <p className="font-sans text-sm text-red-500">{errors.phone}</p>
-          )}
+          {errors.phone && <p className="font-sans text-sm text-red-500">{errors.phone}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-email"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-email" className="font-sans text-sm">
             E-mail
           </label>
 
@@ -193,16 +170,11 @@ function ContactForm() {
               errors.email && 'border-destructive',
             )}
           />
-          {errors.email && (
-            <p className="font-sans text-sm text-red-500">{errors.email}</p>
-          )}
+          {errors.email && <p className="font-sans text-sm text-red-500">{errors.email}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-message"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-message" className="font-sans text-sm">
             Сообщение
           </label>
 
@@ -225,9 +197,7 @@ function ContactForm() {
               errors.message && 'border-destructive',
             )}
           />
-          {errors.message && (
-            <p className="font-sans text-sm text-red-500">{errors.message}</p>
-          )}
+          {errors.message && <p className="font-sans text-sm text-red-500">{errors.message}</p>}
         </div>
       </div>
 
@@ -235,19 +205,14 @@ function ContactForm() {
         <Button
           type="submit"
           disabled={isSubmitting || submitted}
-          className={cn(
-            'font-serif text-lg font-normal cursor-pointer',
-          )}
+          className={cn('cursor-pointer font-serif text-lg font-normal')}
           size={'lg'}
         >
           {isSubmitting ? 'Отправка...' : submitted ? 'Отправлено' : 'Отправить'}
         </Button>
 
         {submitted && (
-          <p
-            className="font-sans text-sm text-muted-foreground"
-            role="status"
-          >
+          <p className="text-muted-foreground font-sans text-sm" role="status">
             Спасибо! Сообщение отправлено.
           </p>
         )}
@@ -312,31 +277,21 @@ function ContactLinks() {
             key={item.label}
             href={item.href}
             target={item.external ? '_blank' : undefined}
-            rel={
-              item.external
-                ? 'noopener noreferrer'
-                : undefined
-            }
+            rel={item.external ? 'noopener noreferrer' : undefined}
             className={cn(
               'group flex min-h-12 items-center justify-between',
-              'border-b border-border',
+              'border-border border-b',
               'font-sans text-sm',
               'transition-opacity hover:opacity-60',
             )}
           >
             <span className="flex items-center gap-3">
-              <Icon
-                aria-hidden="true"
-                className="size-4 shrink-0"
-                strokeWidth={1.5}
-              />
+              <Icon aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.5} />
 
               <span>{item.label}</span>
             </span>
 
-            <span className="max-w-[60%] truncate text-muted-foreground">
-              {item.value}
-            </span>
+            <span className="text-muted-foreground max-w-[60%] truncate">{item.value}</span>
           </a>
         );
       })}
@@ -346,17 +301,12 @@ function ContactLinks() {
 
 function ContactContent() {
   return (
-    <div
-      className={cn(
-        'grid min-w-0',
-        'grid-cols-1 lg:grid-cols-2',
-      )}
-    >
+    <div className={cn('grid min-w-0', 'grid-cols-1 lg:grid-cols-2')}>
       {/* LEFT COLUMN */}
       <section
         className={cn(
           'min-w-0',
-          'border-b border-border lg:border-b-0',
+          'border-border border-b lg:border-b-0',
           'lg:border-r',
           'p-6 sm:p-8 lg:p-10 xl:p-12',
         )}
@@ -371,12 +321,7 @@ function ContactContent() {
       </section>
 
       {/* RIGHT COLUMN */}
-      <section
-        className={cn(
-          'min-w-0',
-          'p-6 sm:p-8 lg:p-10 xl:p-12',
-        )}
-      >
+      <section className={cn('min-w-0', 'p-6 sm:p-8 lg:p-10 xl:p-12')}>
         <div className="mb-10">
           <h2 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">
             Мои контакты для связи
@@ -401,24 +346,13 @@ function ContactContent() {
   );
 }
 
-export function ContactModal({
-  children,
-  open,
-  onOpenChange,
-}: ContactModalProps) {
+export function ContactModal({ children, open, onOpenChange }: ContactModalProps) {
   const isMobile = useIsMobile();
 
   if (isMobile) {
     return (
-      <Drawer
-        open={open}
-        onOpenChange={onOpenChange}
-      >
-        {children && (
-          <DrawerTrigger asChild>
-            {children}
-          </DrawerTrigger>
-        )}
+      <Drawer open={open} onOpenChange={onOpenChange}>
+        {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
 
         <DrawerContent
           className={cn(
@@ -428,13 +362,9 @@ export function ContactModal({
           )}
         >
           <div className="sr-only">
-            <DrawerTitle>
-              Связаться со мной
-            </DrawerTitle>
+            <DrawerTitle>Связаться со мной</DrawerTitle>
 
-            <DrawerDescription>
-              Форма обратной связи и контактные данные.
-            </DrawerDescription>
+            <DrawerDescription>Форма обратной связи и контактные данные.</DrawerDescription>
           </div>
 
           <div className="min-h-0 overflow-y-auto">
@@ -446,33 +376,22 @@ export function ContactModal({
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
-      {children && (
-        <DialogTrigger asChild>
-          {children}
-        </DialogTrigger>
-      )}
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
 
       <DialogContent
         className={cn(
           'w-[calc(100vw-2rem)] max-w-6xl',
           'max-h-[90dvh] overflow-hidden',
-          'rounded-none border border-border',
+          'border-border rounded-none border',
           'bg-background p-0',
           'shadow-none',
         )}
       >
         <div className="sr-only">
-          <DialogTitle>
-            Связаться со мной
-          </DialogTitle>
+          <DialogTitle>Связаться со мной</DialogTitle>
 
-          <DialogDescription>
-            Форма обратной связи и контактные данные.
-          </DialogDescription>
+          <DialogDescription>Форма обратной связи и контактные данные.</DialogDescription>
         </div>
 
         <div className="max-h-[90dvh] overflow-y-auto">
@@ -483,12 +402,6 @@ export function ContactModal({
   );
 }
 
-export function ContactModalTrigger({
-  children,
-}: ContactModalTriggerProps) {
-  return (
-    <ContactModal>
-      {children}
-    </ContactModal>
-  );
+export function ContactModalTrigger({ children }: ContactModalTriggerProps) {
+  return <ContactModal>{children}</ContactModal>;
 }
