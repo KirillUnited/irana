@@ -20,16 +20,12 @@ interface TelegramResponse {
  */
 export async function sendTelegramMessage(
   data: ContactFormData,
-  options: TelegramSendOptions = {}
+  options: TelegramSendOptions = {},
 ): Promise<{ success: boolean; error?: string }> {
-  const {
-    TELEGRAM_BOT_TOKEN,
-    TELEGRAM_CHAT_ID,
-    TELEGRAM_CHANNEL_ID,
-  } = process.env;
+  const { TELEGRAM_BOT_TOKEN, NEXT_PUBLIC_TELEGRAM_GROUP_CHAT_ID, NEXT_PUBLIC_TELEGRAM_THREAD_ID } =
+    process.env;
 
-  const chatId = options.chatId || TELEGRAM_CHAT_ID;
-  const channelId = options.channelId || TELEGRAM_CHANNEL_ID;
+  const chatId = options.chatId || NEXT_PUBLIC_TELEGRAM_GROUP_CHAT_ID;
 
   if (!TELEGRAM_BOT_TOKEN) {
     return {
@@ -38,7 +34,7 @@ export async function sendTelegramMessage(
     };
   }
 
-  if (!chatId && !channelId) {
+  if (!chatId) {
     return {
       success: false,
       error: 'No chat or channel ID provided',
@@ -57,34 +53,32 @@ export async function sendTelegramMessage(
 ${data.message}
   `.trim();
 
-  const targets = [chatId, channelId].filter(Boolean) as string[];
   const errors: string[] = [];
 
   // Send to all configured targets
-  for (const target of targets) {
-    try {
-      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+  try {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: target,
-          text: message,
-          parse_mode: 'HTML',
-        }),
-      });
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        parse_mode: 'HTML',
+        message_thread_id: NEXT_PUBLIC_TELEGRAM_THREAD_ID,
+      }),
+    });
 
-      const result: TelegramResponse = await response.json();
+    const result: TelegramResponse = await response.json();
 
-      if (!result.ok) {
-        errors.push(`Failed to send to ${target}: ${result.description || 'Unknown error'}`);
-      }
-    } catch (error) {
-      errors.push(`Failed to send to ${target}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (!result.ok) {
+      errors.push(`Failed to send: ${result.description || 'Unknown error'}`);
     }
+  } catch (error) {
+    errors.push(`Failed to send: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 
   if (errors.length > 0) {

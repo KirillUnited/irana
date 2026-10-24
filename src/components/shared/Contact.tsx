@@ -2,7 +2,14 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import { Mail, ActivityIcon as Instagram, Send, Phone, ExternalLink } from 'lucide-react';
+import {
+  Mail,
+  ActivityIcon as Instagram,
+  Send,
+  Phone,
+  ExternalLink,
+  LoaderIcon,
+} from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -95,6 +102,7 @@ function ContactForm() {
       });
     } finally {
       setIsSubmitting(false);
+      form.reset();
     }
   }
 
@@ -208,7 +216,15 @@ function ContactForm() {
           className={cn('cursor-pointer font-serif text-lg font-normal')}
           size={'lg'}
         >
-          {isSubmitting ? 'Отправка...' : submitted ? 'Отправлено' : 'Отправить'}
+          {isSubmitting ? (
+            <>
+              <LoaderIcon className={'animate-spin duration-700'} /> 'Отправка...'
+            </>
+          ) : submitted ? (
+            'Отправлено'
+          ) : (
+            'Отправить'
+          )}
         </Button>
 
         {submitted && (
