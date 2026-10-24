@@ -1,20 +1,21 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Footer, Header } from "@/components/shared";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
-import { siteConfig } from "@/lib/content";
+import type { Metadata } from 'next';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Footer, Header } from '@/components/shared';
+import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google';
+import { siteConfig } from '@/lib/content';
+import { Toaster } from '@/components/ui/sonner';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin", "cyrillic-ext"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
+  subsets: ['latin', 'cyrillic-ext'],
+  variable: '--font-plus-jakarta',
+  display: 'swap',
   weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 const playfairDisplay = Playfair_Display({
-  subsets: ["cyrillic"],
-  variable: "--font-playfair",
-  display: "swap",
+  subsets: ['cyrillic'],
+  variable: '--font-playfair',
+  display: 'swap',
   weight: ['400', '500', '600', '700', '800'],
 });
 const SITE_URL = process.env.NEXT_PUBLIC_SERVER_URL || '';
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  manifest: "/site.webmanifest",
+  manifest: '/site.webmanifest',
   openGraph: {
     title: `${siteConfig.seo.title || ''}`,
     description: `${siteConfig.seo.description}`,
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className="h-full antialiased" suppressHydrationWarning>
-      <body className={`${playfairDisplay.variable} min-h-dvh flex flex-col font-sans antialiased`}>
+      <body className={`${playfairDisplay.variable} flex min-h-dvh flex-col font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -81,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Footer />
         </ThemeProvider>
+
+        <Toaster position={'top-center'} />
       </body>
     </html>
   );

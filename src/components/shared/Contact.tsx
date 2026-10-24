@@ -8,7 +8,11 @@ import {
   Send,
   Phone,
   ExternalLink,
+  LoaderIcon,
+  CheckCircle2Icon,
+  XIcon,
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -28,6 +32,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -49,8 +54,7 @@ interface ContactModalTriggerProps {
   asChild?: boolean;
 }
 
-function ContactForm() {
-  const [submitted, setSubmitted] = React.useState(false);
+function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const [errors, setErrors] = React.useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -77,6 +81,7 @@ function ContactForm() {
         }
       });
       setErrors(fieldErrors);
+      toast.error('Проверьте правильность заполнения полей');
       return;
     }
 
@@ -87,17 +92,19 @@ function ContactForm() {
       const telegramResult = await sendTelegramMessage(data);
 
       if (telegramResult.success) {
-        setSubmitted(true);
+        // Reset only on success, so the user doesn't lose their input on failure
+        form.reset();
+        onSuccess?.();
       } else {
         console.error('Telegram send failed:', telegramResult.error);
-        setErrors({
-          message: telegramResult.error || 'Не удалось отправить сообщение',
+        toast.error('Не удалось отправить сообщение', {
+          description: 'Попробуйте ещё раз или свяжитесь со мной напрямую.',
         });
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      setErrors({
-        message: 'Произошла ошибка при отправке',
+      toast.error('Произошла ошибка при отправке', {
+        description: 'Попробуйте ещё раз или свяжитесь со мной напрямую.',
       });
     } finally {
       setIsSubmitting(false);
@@ -105,17 +112,10 @@ function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-6"
-      noValidate
-    >
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
       <div className="grid gap-5">
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-name"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-name" className="font-sans text-sm">
             Имя
           </label>
 
@@ -135,16 +135,11 @@ function ContactForm() {
               errors.name && 'border-destructive',
             )}
           />
-          {errors.name && (
-            <p className="font-sans text-sm text-red-500">{errors.name}</p>
-          )}
+          {errors.name && <p className="font-sans text-sm text-red-500">{errors.name}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-phone"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-phone" className="font-sans text-sm">
             Телефон
           </label>
 
@@ -164,16 +159,11 @@ function ContactForm() {
               errors.phone && 'border-destructive',
             )}
           />
-          {errors.phone && (
-            <p className="font-sans text-sm text-red-500">{errors.phone}</p>
-          )}
+          {errors.phone && <p className="font-sans text-sm text-red-500">{errors.phone}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-email"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-email" className="font-sans text-sm">
             E-mail
           </label>
 
@@ -193,16 +183,11 @@ function ContactForm() {
               errors.email && 'border-destructive',
             )}
           />
-          {errors.email && (
-            <p className="font-sans text-sm text-red-500">{errors.email}</p>
-          )}
+          {errors.email && <p className="font-sans text-sm text-red-500">{errors.email}</p>}
         </div>
 
         <div className="grid gap-2">
-          <label
-            htmlFor="contact-message"
-            className="font-sans text-sm"
-          >
+          <label htmlFor="contact-message" className="font-sans text-sm">
             Сообщение
           </label>
 
@@ -225,32 +210,25 @@ function ContactForm() {
               errors.message && 'border-destructive',
             )}
           />
-          {errors.message && (
-            <p className="font-sans text-sm text-red-500">{errors.message}</p>
-          )}
+          {errors.message && <p className="font-sans text-sm text-red-500">{errors.message}</p>}
         </div>
       </div>
 
       <div className="flex flex-col items-start gap-3">
         <Button
           type="submit"
-          disabled={isSubmitting || submitted}
-          className={cn(
-            'font-serif text-lg font-normal cursor-pointer',
-          )}
+          disabled={isSubmitting}
+          className={cn('cursor-pointer font-serif text-lg font-normal')}
           size={'lg'}
         >
-          {isSubmitting ? 'Отправка...' : submitted ? 'Отправлено' : 'Отправить'}
+          {isSubmitting ? (
+            <>
+              <LoaderIcon className={'animate-spin duration-700'} /> Отправка...
+            </>
+          ) : (
+            'Отправить'
+          )}
         </Button>
-
-        {submitted && (
-          <p
-            className="font-sans text-sm text-muted-foreground"
-            role="status"
-          >
-            Спасибо! Сообщение отправлено.
-          </p>
-        )}
       </div>
     </form>
   );
@@ -312,31 +290,21 @@ function ContactLinks() {
             key={item.label}
             href={item.href}
             target={item.external ? '_blank' : undefined}
-            rel={
-              item.external
-                ? 'noopener noreferrer'
-                : undefined
-            }
+            rel={item.external ? 'noopener noreferrer' : undefined}
             className={cn(
               'group flex min-h-12 items-center justify-between',
-              'border-b border-border',
+              'border-border border-b',
               'font-sans text-sm',
               'transition-opacity hover:opacity-60',
             )}
           >
             <span className="flex items-center gap-3">
-              <Icon
-                aria-hidden="true"
-                className="size-4 shrink-0"
-                strokeWidth={1.5}
-              />
+              <Icon aria-hidden="true" className="size-4 shrink-0" strokeWidth={1.5} />
 
               <span>{item.label}</span>
             </span>
 
-            <span className="max-w-[60%] truncate text-muted-foreground">
-              {item.value}
-            </span>
+            <span className="text-muted-foreground max-w-[60%] truncate">{item.value}</span>
           </a>
         );
       })}
@@ -344,19 +312,14 @@ function ContactLinks() {
   );
 }
 
-function ContactContent() {
+function ContactContent({ onSuccess }: { onSuccess?: () => void }) {
   return (
-    <div
-      className={cn(
-        'grid min-w-0',
-        'grid-cols-1 lg:grid-cols-2',
-      )}
-    >
+    <div className={cn('grid min-w-0', 'grid-cols-1 lg:grid-cols-2')}>
       {/* LEFT COLUMN */}
       <section
         className={cn(
           'min-w-0',
-          'border-b border-border lg:border-b-0',
+          'border-border border-b lg:border-b-0',
           'lg:border-r',
           'p-6 sm:p-8 lg:p-10 xl:p-12',
         )}
@@ -367,16 +330,11 @@ function ContactContent() {
           </h2>
         </div>
 
-        <ContactForm />
+        <ContactForm onSuccess={onSuccess} />
       </section>
 
       {/* RIGHT COLUMN */}
-      <section
-        className={cn(
-          'min-w-0',
-          'p-6 sm:p-8 lg:p-10 xl:p-12',
-        )}
-      >
+      <section className={cn('min-w-0', 'p-6 sm:p-8 lg:p-10 xl:p-12')}>
         <div className="mb-10">
           <h2 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">
             Мои контакты для связи
@@ -401,24 +359,33 @@ function ContactContent() {
   );
 }
 
-export function ContactModal({
+function ContactModalInner({
   children,
   open,
   onOpenChange,
-}: ContactModalProps) {
+  onSent,
+}: ContactModalProps & { onSent: () => void }) {
   const isMobile = useIsMobile();
+
+  // Support both controlled (open/onOpenChange props) and uncontrolled (trigger) usage
+  const [internalOpen, setInternalOpen] = React.useState(false);
+  const isControlled = open !== undefined;
+  const isOpen = isControlled ? open : internalOpen;
+
+  const handleOpenChange = (next: boolean) => {
+    if (!isControlled) setInternalOpen(next);
+    onOpenChange?.(next);
+  };
+
+  const handleSuccess = () => {
+    handleOpenChange(false);
+    onSent();
+  };
 
   if (isMobile) {
     return (
-      <Drawer
-        open={open}
-        onOpenChange={onOpenChange}
-      >
-        {children && (
-          <DrawerTrigger asChild>
-            {children}
-          </DrawerTrigger>
-        )}
+      <Drawer open={isOpen} onOpenChange={handleOpenChange}>
+        {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
 
         <DrawerContent
           className={cn(
@@ -428,17 +395,13 @@ export function ContactModal({
           )}
         >
           <div className="sr-only">
-            <DrawerTitle>
-              Связаться со мной
-            </DrawerTitle>
+            <DrawerTitle>Связаться со мной</DrawerTitle>
 
-            <DrawerDescription>
-              Форма обратной связи и контактные данные.
-            </DrawerDescription>
+            <DrawerDescription>Форма обратной связи и контактные данные.</DrawerDescription>
           </div>
 
           <div className="min-h-0 overflow-y-auto">
-            <ContactContent />
+            <ContactContent onSuccess={handleSuccess} />
           </div>
         </DrawerContent>
       </Drawer>
@@ -446,49 +409,84 @@ export function ContactModal({
   }
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={onOpenChange}
-    >
-      {children && (
-        <DialogTrigger asChild>
-          {children}
-        </DialogTrigger>
-      )}
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
 
       <DialogContent
         className={cn(
           'w-[calc(100vw-2rem)] max-w-6xl',
           'max-h-[90dvh] overflow-hidden',
-          'rounded-none border border-border',
+          'border-border rounded-none border',
           'bg-background p-0',
           'shadow-none',
         )}
       >
         <div className="sr-only">
-          <DialogTitle>
-            Связаться со мной
-          </DialogTitle>
+          <DialogTitle>Связаться со мной</DialogTitle>
 
-          <DialogDescription>
-            Форма обратной связи и контактные данные.
-          </DialogDescription>
+          <DialogDescription>Форма обратной связи и контактные данные.</DialogDescription>
         </div>
 
         <div className="max-h-[90dvh] overflow-y-auto">
-          <ContactContent />
+          <ContactContent onSuccess={handleSuccess} />
         </div>
       </DialogContent>
     </Dialog>
   );
 }
 
-export function ContactModalTrigger({
-  children,
-}: ContactModalTriggerProps) {
+const SUCCESS_ALERT_DURATION_MS = 5000;
+
+export function ContactModal(props: ContactModalProps) {
+  const [showSuccess, setShowSuccess] = React.useState(true);
+
+  React.useEffect(() => {
+    if (!showSuccess) return;
+    const timer = window.setTimeout(() => setShowSuccess(false), SUCCESS_ALERT_DURATION_MS);
+    return () => window.clearTimeout(timer);
+  }, [showSuccess]);
+
   return (
-    <ContactModal>
-      {children}
-    </ContactModal>
+    <>
+      <ContactModalInner {...props} onSent={() => setShowSuccess(true)} />
+
+      {showSuccess && (
+        <div className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <Alert
+            role="status"
+            className={cn(
+              'pointer-events-auto relative max-w-lg',
+              'border-border bg-background rounded-none border p-6 pr-12 shadow-lg',
+              'animate-in fade-in-0 zoom-in-95 duration-200',
+            )}
+          >
+            <div className={'grid grid-cols-[auto_1fr] items-start gap-4'}>
+              <CheckCircle2Icon aria-hidden="true" />
+              <div>
+                <AlertTitle className="font-serif text-2xl leading-none font-normal">
+                  Спасибо! Сообщение отправлено.
+                </AlertTitle>
+                <AlertDescription className="font-sans text-lg">
+                  Я свяжусь с вами в ближайшее время.
+                </AlertDescription>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowSuccess(false)}
+              aria-label="Закрыть"
+              className="absolute top-3 right-3 cursor-pointer opacity-60 transition-opacity hover:opacity-100"
+            >
+              <XIcon className="size-4" />
+            </button>
+          </Alert>
+        </div>
+      )}
+    </>
   );
+}
+
+export function ContactModalTrigger({ children }: ContactModalTriggerProps) {
+  return <ContactModal>{children}</ContactModal>;
 }
