@@ -34,6 +34,7 @@ import {
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Input } from '@/components/ui/input';
+import { PhoneInput } from '@/components/ui/phone-input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 
@@ -143,12 +144,9 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             Телефон
           </label>
 
-          <Input
+          <PhoneInput
             id="contact-phone"
             name="phone"
-            type="tel"
-            autoComplete="tel"
-            placeholder="+375"
             className={cn(
               'h-12 rounded-none border-x-0 border-t-0 px-0',
               'border-border bg-transparent',

@@ -5,7 +5,11 @@ import { BY_PHONE_REGEX } from '@/lib/phone';
 export const contactFormSchema = z.object({
   name: z.string().trim().min(2, 'Введите имя').max(100, 'Имя слишком длинное'),
 
-  phone: z.string().trim().regex(BY_PHONE_REGEX, 'Введите номер в формате +375 (XX) XXX-XX-XX'),
+  phone: z
+    .string()
+    .trim()
+    .regex(BY_PHONE_REGEX, 'Введите номер в формате +375 (XX) XXX-XX-XX')
+    .refine((v) => /^\+375 \((25|29|33|44)\)/.test(v), 'Неверный код оператора'),
 
   email: z.string().trim().email('Введите корректный e-mail').max(254, 'E-mail слишком длинный'),
 
