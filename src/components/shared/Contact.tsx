@@ -51,7 +51,7 @@ interface ContactModalTriggerProps {
   asChild?: boolean;
 }
 
-function ContactForm() {
+function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
   const [errors, setErrors] = React.useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -94,6 +94,7 @@ function ContactForm() {
         });
         // Reset only on success, so the user doesn't lose their input on failure
         form.reset();
+        onSuccess?.();
       } else {
         console.error('Telegram send failed:', telegramResult.error);
         toast.error('Не удалось отправить сообщение', {
@@ -311,7 +312,7 @@ function ContactLinks() {
   );
 }
 
-function ContactContent() {
+function ContactContent({ onSuccess }: { onSuccess?: () => void }) {
   return (
     <div className={cn('grid min-w-0', 'grid-cols-1 lg:grid-cols-2')}>
       {/* LEFT COLUMN */}
@@ -329,7 +330,7 @@ function ContactContent() {
           </h2>
         </div>
 
-        <ContactForm />
+        <ContactForm onSuccess={onSuccess} />
       </section>
 
       {/* RIGHT COLUMN */}
@@ -361,9 +362,21 @@ function ContactContent() {
 export function ContactModal({ children, open, onOpenChange }: ContactModalProps) {
   const isMobile = useIsMobile();
 
+  // Support both controlled (open/onOpenChange props) and uncontrolled (trigger) usage
+  const [internalOpen, setInternalOpen] = React.useState(false);
+  const isControlled = open !== undefined;
+  const isOpen = isControlled ? open : internalOpen;
+
+  const handleOpenChange = (next: boolean) => {
+    if (!isControlled) setInternalOpen(next);
+    onOpenChange?.(next);
+  };
+
+  const handleSuccess = () => handleOpenChange(false);
+
   if (isMobile) {
     return (
-      <Drawer open={open} onOpenChange={onOpenChange}>
+      <Drawer open={isOpen} onOpenChange={handleOpenChange}>
         {children && <DrawerTrigger asChild>{children}</DrawerTrigger>}
 
         <DrawerContent
@@ -380,7 +393,7 @@ export function ContactModal({ children, open, onOpenChange }: ContactModalProps
           </div>
 
           <div className="min-h-0 overflow-y-auto">
-            <ContactContent />
+            <ContactContent onSuccess={handleSuccess} />
           </div>
         </DrawerContent>
       </Drawer>
@@ -388,7 +401,7 @@ export function ContactModal({ children, open, onOpenChange }: ContactModalProps
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       {children && <DialogTrigger asChild>{children}</DialogTrigger>}
 
       <DialogContent
@@ -407,7 +420,7 @@ export function ContactModal({ children, open, onOpenChange }: ContactModalProps
         </div>
 
         <div className="max-h-[90dvh] overflow-y-auto">
-          <ContactContent />
+          <ContactContent onSuccess={handleSuccess} />
         </div>
       </DialogContent>
     </Dialog>

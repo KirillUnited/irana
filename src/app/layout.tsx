@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </ThemeProvider>
 
-        <Toaster />
+        <Toaster position={'top-center'} />
       </body>
     </html>
   );
