@@ -77,7 +77,7 @@ export function Process() {
           )})}
         </div>
         <div className='flex flex-wrap justify-between items-center mt-8 lg:mt-16 gap-6'>
-          <p>*Этапы разработки могут меняться в зависимости от задачи и формата проекта, но обычно состоят из пяти основных этапов.</p>
+          <p>*Этапы разработки могут меняться в зависимости от задачи и формата проекта, но обычно состоят из пяти основных этапов.</p>
           <ContactModal>
             <Button variant={'ghost'} size={'lg'} className={`font-serif font-medium text-2xl hover:cursor-pointer px-0`}>
               <div className='flex flex-col nav-link'>

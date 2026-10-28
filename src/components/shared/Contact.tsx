@@ -193,10 +193,10 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             id="contact-message"
             name="message"
             rows={6}
-            placeholder={`Расскажите подробнее о вашем проекте.
+            placeholder={`Расскажите подробнее о вашем проекте.
 При необходимости можете вставить картинки
-и (или) ссылки на то, что нравится и хотели бы
-увидеть у себя.`}
+и (или) ссылки на то, что нравится и хотели бы
+увидеть у себя.`}
             className={cn(
               'min-h-36 resize-none rounded-none',
               'border-x-0 border-t-0 px-0',
@@ -250,7 +250,7 @@ function ContactLinks() {
     },
     {
       label: 'Viber',
-      value: 'Написать в Viber',
+      value: 'Написать в Viber',
       href: contactInfo.viber || '#',
       icon: Send,
       external: false,
@@ -465,7 +465,7 @@ export function ContactModal(props: ContactModalProps) {
                   Спасибо! Сообщение отправлено.
                 </AlertTitle>
                 <AlertDescription className="font-sans text-lg">
-                  Я свяжусь с вами в ближайшее время.
+                  Я свяжусь с вами в ближайшее время.
                 </AlertDescription>
               </div>
             </div>

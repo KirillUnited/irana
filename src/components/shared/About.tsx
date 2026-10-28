@@ -6,57 +6,66 @@ import { StarIcon2 } from './Icons';
 
 export function About() {
   return (
-    <section id="about" className="overflow-hidden">
+    <section id="about">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           {/* Photo */}
           <motion.div
-            className="order-1 lg:order-0 relative lg:col-span-3 h-full"
+            className="relative order-1 h-full lg:order-0 lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="overflow-hidden bg-muted">
+            <div className="bg-muted overflow-hidden">
               <Image
                 src="/images/portrait.jpg"
                 alt="Ирина Коржель"
                 width={0}
                 height={0}
-                sizes='100vw'
+                sizes="100vw"
                 quality={60}
                 loading="eager"
-                className="object-cover w-full h-full"
+                className="h-full w-full object-cover"
               />
             </div>
-            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2 -z-10 text-foreground/50" color="currentColor" />
+            <StarIcon2
+              className="text-foreground/50 absolute right-0 -bottom-1/6 -z-10 translate-x-1/2"
+              color="currentColor"
+            />
           </motion.div>
 
           {/* Text */}
           <motion.div
-            className="order-2 flex flex-col lg:order-0 relative lg:col-span-4 lg:col-start-5"
+            className="relative order-2 flex flex-col lg:order-0 lg:col-span-4 lg:col-start-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className='lg:absolute lg:top-0 lg:left-0 lg:-translate-x-1/2'>
-              <h2 className="leading-normal text-[clamp(64px,8vw,136px)] font-serif font-medium text-center z-10 relative">
+            <div className="lg:absolute lg:top-0 lg:left-0 lg:-translate-x-1/2">
+              <h2 className="relative z-10 text-center font-serif text-[clamp(64px,8vw,136px)] leading-normal font-medium text-balance">
                 ОБО МНЕ
               </h2>
-              <div className="hidden lg:block bg-background blur-3xl absolute inset-0 z-0"></div>
+              <div className="bg-background absolute inset-0 z-0 hidden blur-3xl lg:block"></div>
             </div>
-            <div className="space-y-4 lg:space-y-8 leading-snug tracking-tighter text-foreground md:text-xl lg:mt-52">
-              <p className='text-4xl font-light'>Привет, меня зовут Ирина.</p>
-              <div className="flex flex-col lg:grid grid-cols-4 gap-4 md:gap-10 lg:gap-20">
-                <p className='col-span-4'>
-                  Я начинающий веб-дизайнер, поэтому для меня Ваш проект — это не поток, а возможность создать что-то выдающееся для своего портфолио.
+            <div className="text-foreground space-y-4 leading-snug tracking-tighter md:text-xl lg:mt-52 lg:space-y-8">
+              <p className="text-4xl font-light">Привет, меня зовут Ирина.</p>
+              <div className="flex grid-cols-4 flex-col gap-4 text-pretty md:gap-10 lg:grid lg:gap-20">
+                <p className="col-span-4">
+                  Я начинающий веб-дизайнер, поэтому для меня Ваш проект — это не поток,
+                  а&nbsp;возможность создать что-то выдающееся для своего портфолио.
                 </p>
-                <p className='col-span-3 col-start-2'>
-                  Я уделю вашему сайту в 10 раз больше времени и внимания, чем перегруженный профи, и сделаю всё, чтобы результат превзошел ожидания и помог вашему бизнесу вырасти.
+                <p className="col-span-3 col-start-2">
+                  Я уделю вашему сайту в 10 раз больше времени и внимания, чем перегруженный
+                  профи,&nbsp;и сделаю всё, чтобы результат превзошел ожидания и помог вашему
+                  бизнесу вырасти.
                 </p>
-                <p className='col-span-4'>
-                  Я гарантирую полную точность в проекте, современные тенденции и дизайн по цене ниже рыночной в обмен на подробный отзыв и возможность использовать проект в моем портфолио.</p>
+                <p className="col-span-4">
+                  Я гарантирую полную точность в проекте, современные тенденции и дизайн по цене
+                  ниже рыночной в обмен на подробный отзыв и возможность использовать проект в моем
+                  портфолио.
+                </p>
               </div>
             </div>
           </motion.div>
