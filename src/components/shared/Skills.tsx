@@ -60,7 +60,7 @@ export function Skills() {
                   transition={{ duration: 0.4, delay: 0.2 + index * 0.05 }}
                   style={{ marginLeft: `${index * 100}px` }}
                   >
-                    <Icon/>
+                    <Icon color="currentColor" />
                   <span className='hidden lg:block'>{tool.name}</span>
                 </motion.li>
               )})}

@@ -5,6 +5,9 @@ import { websiteTypes } from '@/lib/content';
 import { ArrowLink } from '@/components/portfolio';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { ContactModal } from './Contact';
+import { Button } from '../ui/button';
+import { ArrowRightIcon } from 'lucide-react';
 
 export function WebsiteTypes() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -69,9 +72,16 @@ export function WebsiteTypes() {
                     {type.price && (
                       <div className='flex flex-wrap gap-2 justify-between items-center'>
                         <p className="text-3xl font-light">{type.price}</p>
-                        <ArrowLink className="font-sans font-normal">
-                          {type.actionLabel || 'Заказать'}
-                        </ArrowLink>
+                        <ContactModal>
+                        <Button variant={'ghost'} className={cn(`font-serif font-medium text-2xl hover:cursor-pointer px-0`, 'font-sans font-normal')}>
+      <div className='flex flex-col nav-link'>
+        <div className="flex items-center gap-2 ">
+          <span>{type.actionLabel || 'Заказать'}</span>
+          <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
+        </div>
+      </div>
+    </Button>
+                        </ContactModal>
                       </div>
                     )}
                   </div>
@@ -104,9 +114,16 @@ export function WebsiteTypes() {
               {type.price && (
                 <div className='flex flex-wrap gap-2 justify-between items-center'>
                   <p className="text-3xl font-light">{type.price}</p>
-                  <ArrowLink className="font-sans font-normal">
-                    {type.actionLabel || 'Заказать'}
-                  </ArrowLink>
+                  <ContactModal>
+                    <Button variant={'ghost'} className={cn(`font-serif font-medium text-2xl hover:cursor-pointer px-0`, 'font-sans font-normal')}>
+                      <div className='flex flex-col nav-link'>
+                        <div className="flex items-center gap-2 ">
+                          <span>{type.actionLabel || 'Заказать'}</span>
+                          <ArrowRightIcon className="arrow-link-icon" size={24} strokeWidth={1.2} />
+                        </div>
+                      </div>
+                    </Button>
+                  </ContactModal>
                 </div>
               )}
             </motion.article>
