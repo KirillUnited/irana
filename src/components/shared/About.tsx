@@ -29,7 +29,7 @@ export function About() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2 -z-10" />
+            <StarIcon2 className="absolute -bottom-1/6 right-0 translate-x-1/2 -z-10 text-foreground/50" color="currentColor" />
           </motion.div>
 
           {/* Text */}
@@ -40,9 +40,12 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="leading-normal lg:absolute lg:top-0 lg:left-0 lg:-translate-x-1/2 text-[clamp(64px,8vw,136px)] font-serif font-medium text-center">
-              ОБО МНЕ
-            </h2>
+            <div className='lg:absolute lg:top-0 lg:left-0 lg:-translate-x-1/2'>
+              <h2 className="leading-normal text-[clamp(64px,8vw,136px)] font-serif font-medium text-center z-10 relative">
+                ОБО МНЕ
+              </h2>
+              <div className="hidden lg:block bg-background blur-3xl absolute inset-0 z-0"></div>
+            </div>
             <div className="space-y-4 lg:space-y-8 leading-snug tracking-tighter text-foreground/70 md:text-xl lg:mt-52">
               <p className='text-4xl font-light'>Привет, меня зовут Ирина.</p>
               <div className="flex flex-col lg:grid grid-cols-4 gap-4 md:gap-10 lg:gap-20">

@@ -34,7 +34,7 @@ export function Projects() {
                   <ProjectCard project={project} />
                 </motion.div>
               ))}
-        <StarIcon className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 -z-10" />
+        <StarIcon className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 -z-10 text-foreground/50" color="currentColor" />
             </div>
 	        </div>
         </div>
