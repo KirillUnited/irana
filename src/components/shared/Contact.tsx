@@ -195,7 +195,7 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             rows={6}
             placeholder={`Расскажите подробнее о вашем проекте.
 При необходимости можете вставить картинки
-и (или) ссылки на то, что нравится и хотели бы
+и (или) ссылки на то, что нравится и хотели бы
 увидеть у себя.`}
             className={cn(
               'min-h-36 resize-none rounded-none',
@@ -395,7 +395,7 @@ function ContactModalInner({
           <div className="sr-only">
             <DrawerTitle>Связаться со мной</DrawerTitle>
 
-            <DrawerDescription>Форма обратной связи и контактные данные.</DrawerDescription>
+            <DrawerDescription>Форма обратной связи и&nbsp;контактные данные.</DrawerDescription>
           </div>
 
           <div className="min-h-0 overflow-y-auto">
@@ -422,7 +422,7 @@ function ContactModalInner({
         <div className="sr-only">
           <DialogTitle>Связаться со мной</DialogTitle>
 
-          <DialogDescription>Форма обратной связи и контактные данные.</DialogDescription>
+          <DialogDescription>Форма обратной связи и&nbsp;контактные данные.</DialogDescription>
         </div>
 
         <div className="max-h-[90dvh] overflow-y-auto">
