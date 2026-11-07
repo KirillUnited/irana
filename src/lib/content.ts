@@ -150,7 +150,11 @@ export const socialLinks: SocialLink[] = [
   { label: 'Telegram', href: 'https://t.me/webdesigner_Korzhel', external: true },
   { label: 'Mail', href: 'mailto:hello@irinakorzh.by', external: false },
   { label: 'Behance', href: 'https://www.behance.net/3e34ec89', external: true },
-  { label: 'Instagram', href: 'https://instagram.com/', external: true },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/korzhelirina?dlrf=MW9yN3FhN2VkNTM5aQ==',
+    external: true,
+  },
 ];
 
 export const contactInfo: ContactInfo = {
@@ -159,7 +163,7 @@ export const contactInfo: ContactInfo = {
   viber: 'viber://chat?number=%2B375445764476',
   telegram: 'https://t.me/webdesigner_Korzhel',
   behance: 'https://www.behance.net/3e34ec89',
-  instagram: 'https://instagram.com/',
+  instagram: 'https://www.instagram.com/korzhelirina?dlrf=MW9yN3FhN2VkNTM5aQ==',
   qrCode: '/images/qr-code.png',
 };
 

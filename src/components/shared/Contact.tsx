@@ -2,16 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import {
-  Mail,
-  ActivityIcon as Instagram,
-  Send,
-  Phone,
-  ExternalLink,
-  LoaderIcon,
-  CheckCircle2Icon,
-  XIcon,
-} from 'lucide-react';
+import { Mail, Send, Phone, LoaderIcon, CheckCircle2Icon, XIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -42,6 +33,7 @@ import { cn } from '@/lib/utils';
 import { contactInfo } from '@/lib/content';
 import { contactFormSchema, type ContactFormData } from '@/lib/forms';
 import { sendTelegramMessage } from '@/app/actions/telegram';
+import { FaBehance, FaInstagram, FaViber } from 'react-icons/fa';
 
 interface ContactModalProps {
   children?: React.ReactNode;
@@ -250,9 +242,9 @@ function ContactLinks() {
     },
     {
       label: 'Viber',
-      value: 'Написать в Viber',
+      value: contactInfo.phone,
       href: contactInfo.viber || '#',
-      icon: Send,
+      icon: FaViber,
       external: false,
     },
     {
@@ -264,16 +256,16 @@ function ContactLinks() {
     },
     {
       label: 'Instagram',
-      value: '@webdesigner_Korzhel',
+      value: '@korzhelirina',
       href: contactInfo.instagram || '#',
-      icon: Instagram,
+      icon: FaInstagram,
       external: true,
     },
     {
       label: 'Behance',
       value: 'behance.net/irinakorzh',
       href: contactInfo.behance || '#',
-      icon: ExternalLink,
+      icon: FaBehance,
       external: true,
     },
   ];
