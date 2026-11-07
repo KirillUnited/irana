@@ -149,7 +149,7 @@ export const socialLinks: SocialLink[] = [
   { label: 'Viber', href: 'viber://chat?number=%2B375445764476', external: true },
   { label: 'Telegram', href: 'https://t.me/webdesigner_Korzhel', external: true },
   { label: 'Mail', href: 'mailto:hello@irinakorzh.by', external: false },
-  { label: 'Behance', href: 'https://behance.net/', external: true },
+  { label: 'Behance', href: 'https://www.behance.net/3e34ec89', external: true },
   { label: 'Instagram', href: 'https://instagram.com/', external: true },
 ];
 
