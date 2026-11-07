@@ -4,11 +4,18 @@ import { Button } from '../ui/button';
 import { ArrowRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip';
 
 export function Footer() {
   return (
     <footer id="contact" className="border-t py-6">
-      <div className="container">
+      <TooltipProvider>
+        <div className="container">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           <div className="grid grid-cols-1 gap-4 lg:col-span-2 lg:grid-cols-2">
             <p className="font-serif text-2xl font-medium">Ирина Коржель</p>
@@ -54,26 +61,38 @@ export function Footer() {
             <div className="col-span-5 grid-cols-1 gap-6 lg:col-start-2 lg:grid lg:grid-cols-4">
               <div className="col-span-3 flex flex-wrap gap-6">
                 {socialLinks.slice(0, 3).map((contact) => (
-                  <Link
-                    key={contact.label}
-                    href={contact.href}
-                    className="nav-link flex-1 text-right font-light lg:text-xl"
-                    target={'_blank'}
-                  >
-                    {contact.label}
-                  </Link>
+                  <Tooltip key={contact.label}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={contact.href}
+                        className="nav-link flex-1 text-right font-light lg:text-xl"
+                        target={contact.external ? '_blank' : undefined}
+                      >
+                        {contact.label}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{contact.href}</p>
+                    </TooltipContent>
+                  </Tooltip>
                 ))}
               </div>
               <div className="col-span-3 col-start-2 flex flex-wrap gap-6">
                 {socialLinks.slice(3).map((contact) => (
-                  <Link
-                    key={contact.label}
-                    href={contact.href}
-                    className="nav-link flex-1 font-light lg:text-xl"
-                    target={'_blank'}
-                  >
-                    {contact.label}
-                  </Link>
+                  <Tooltip key={contact.label}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={contact.href}
+                        className="nav-link flex-1 font-light lg:text-xl"
+                        target={contact.external ? '_blank' : undefined}
+                      >
+                        {contact.label}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{contact.href}</p>
+                    </TooltipContent>
+                  </Tooltip>
                 ))}
               </div>
             </div>
@@ -86,7 +105,8 @@ export function Footer() {
             конфиденциальности
           </p>
         </div>
-      </div>
+        </div>
+      </TooltipProvider>
     </footer>
   );
 }
