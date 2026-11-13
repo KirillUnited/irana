@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: `${siteConfig.seo.title || ''}`,
+    title: `${siteConfig.seo.title || ''} | Создание сайтов под ключ — Ирина Коржель`,
     description: `${siteConfig.seo.description}`,
     images: ['/images/portrait.jpg'],
     type: 'website',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.seo.title || ''}`,
+    title: `${siteConfig.seo.title || ''} | Создание сайтов под ключ — Ирина Коржель`,
     description: `${siteConfig.seo.description}`,
     images: ['/images/portrait.jpg'],
   },

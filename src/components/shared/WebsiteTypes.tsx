@@ -142,11 +142,6 @@ export function WebsiteTypes() {
             </motion.article>
           ))}
         </div>
-
-        <p className="mt-6 lg:mt-10">
-          *Этапы разработки могут меняться в зависимости от задачи и&nbsp;формата проекта, но обычно
-          состоят из пяти основных этапов.
-        </p>
       </div>
     </section>
   );
