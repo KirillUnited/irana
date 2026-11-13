@@ -24,7 +24,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-5 lg:w-3xs">
+        <div className="flex items-center gap-5 lg:w-5xs">
 
           <ThemeSwitcher />
           <ContactModal>
@@ -39,7 +39,7 @@ export function Header() {
           </ContactModal>
 
           {/* Mobile navigation */}
-          <div className="lg:hidden">
+          <div className="grid place-items-center lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <button type="button" className="hover:cursor-pointer" aria-label="Открыть меню">
