@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${siteConfig.seo.title || ''}`,
     description: `${siteConfig.seo.description}`,
-    images: ['/apple-touch-icon.png'],
+    images: ['/images/portrait.jpg'],
     type: 'website',
     locale: SITE_LOCALE,
     siteName: 'webdevik.org',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${siteConfig.seo.title || ''}`,
     description: `${siteConfig.seo.description}`,
-    images: ['/apple-touch-icon.png'],
+    images: ['/images/portrait.jpg'],
   },
   alternates: {
     canonical: SITE_URL,

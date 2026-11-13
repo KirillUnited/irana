@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { ContactModal } from './Contact';
+import { ThemeSwitcher } from '../kibo-ui/theme-switcher';
 
 export function Header() {
   return (
     <header className="bg-background z-20 border-b border-b-foreground sticky top-0">
       <div className="container flex min-h-18 items-center justify-between gap-5 py-4">
-        <Link href="#top" className="font-serif font-medium text-2xl w-3xs" data-testid="link-logo">
+        <Link href="/" className="font-serif font-medium text-2xl w-3xs" data-testid="link-logo">
           Ирина<br />Коржель
         </Link>
 
@@ -23,7 +24,9 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-5 lg:w-3xs">
+        <div className="flex items-center gap-5 lg:w-5xs">
+
+          <ThemeSwitcher />
           <ContactModal>
             <Button variant={'ghost'} size={'lg'} className={`hidden lg:inline-flex font-serif  font-medium text-2xl hover:cursor-pointer px-0`}>
               <div className='flex flex-col nav-link'>
@@ -36,7 +39,7 @@ export function Header() {
           </ContactModal>
 
           {/* Mobile navigation */}
-          <div className="lg:hidden">
+          <div className="grid place-items-center lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <button type="button" className="hover:cursor-pointer" aria-label="Открыть меню">
