@@ -1,4 +1,5 @@
 'use client';
+import * as React from 'react';
 import { ArrowRightIcon, Menu } from 'lucide-react';
 import { navigation } from '@/lib/content';
 import Link from 'next/link';
@@ -8,6 +9,8 @@ import { ContactModal } from './Contact';
 import { ThemeSwitcher } from '../kibo-ui/theme-switcher';
 
 export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
     <header className="bg-background z-20 border-b border-b-foreground sticky top-0">
       <div className="container flex min-h-18 items-center justify-between gap-5 py-4">
@@ -40,13 +43,19 @@ export function Header() {
 
           {/* Mobile navigation */}
           <div className="grid place-items-center lg:hidden">
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <button type="button" className="hover:cursor-pointer" aria-label="Открыть меню">
+                <button
+                  type="button"
+                  className="hover:cursor-pointer"
+                  aria-label="Открыть меню"
+                  aria-expanded={isMobileMenuOpen}
+                  aria-controls="mobile-menu"
+                >
                   <Menu size={36} className='w-9 h-9 size-9' width={36} height={36} strokeWidth={1.2} />
                 </button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-2xs">
+              <SheetContent id="mobile-menu" side="right" className="w-full max-w-2xs">
                 <SheetHeader>
                   <SheetTitle>Меню</SheetTitle>
                 </SheetHeader>
