@@ -118,17 +118,22 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             type="text"
             autoComplete="name"
             placeholder="Ваше имя"
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
+            aria-invalid={!!errors.name}
             className={cn(
               'h-12 rounded-none border-x-0 border-t-0 px-0',
               'border-border bg-transparent',
               'shadow-none',
               'focus-visible:border-foreground',
-              'focus-visible:ring-0',
               'text-base',
               errors.name && 'border-destructive',
             )}
           />
-          {errors.name && <p className="font-sans text-sm text-red-500">{errors.name}</p>}
+          {errors.name && (
+            <p id="contact-name-error" className="font-sans text-sm text-red-500">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -139,17 +144,22 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
           <PhoneInput
             id="contact-phone"
             name="phone"
+            aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
+            aria-invalid={!!errors.phone}
             className={cn(
               'h-12 rounded-none border-x-0 border-t-0 px-0',
               'border-border bg-transparent',
               'shadow-none',
               'focus-visible:border-foreground',
-              'focus-visible:ring-0',
               'text-base',
               errors.phone && 'border-destructive',
             )}
           />
-          {errors.phone && <p className="font-sans text-sm text-red-500">{errors.phone}</p>}
+          {errors.phone && (
+            <p id="contact-phone-error" className="font-sans text-sm text-red-500">
+              {errors.phone}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -163,17 +173,22 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
             type="email"
             autoComplete="email"
             placeholder="you@example.com"
+            aria-describedby={errors.email ? 'contact-email-error' : undefined}
+            aria-invalid={!!errors.email}
             className={cn(
               'h-12 rounded-none border-x-0 border-t-0 px-0',
               'border-border bg-transparent',
               'shadow-none',
               'focus-visible:border-foreground',
-              'focus-visible:ring-0',
               'text-base',
               errors.email && 'border-destructive',
             )}
           />
-          {errors.email && <p className="font-sans text-sm text-red-500">{errors.email}</p>}
+          {errors.email && (
+            <p id="contact-email-error" className="font-sans text-sm text-red-500">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -189,18 +204,23 @@ function ContactForm({ onSuccess }: { onSuccess?: () => void }) {
 При необходимости можете вставить картинки
 и (или) ссылки на то, что нравится и хотели бы
 увидеть у себя.`}
+            aria-describedby={errors.message ? 'contact-message-error' : undefined}
+            aria-invalid={!!errors.message}
             className={cn(
               'min-h-36 resize-none rounded-none',
               'border-x-0 border-t-0 px-0',
               'border-border bg-transparent',
               'shadow-none',
               'focus-visible:border-foreground',
-              'focus-visible:ring-0',
               'text-base',
               errors.message && 'border-destructive',
             )}
           />
-          {errors.message && <p className="font-sans text-sm text-red-500">{errors.message}</p>}
+          {errors.message && (
+            <p id="contact-message-error" className="font-sans text-sm text-red-500">
+              {errors.message}
+            </p>
+          )}
         </div>
       </div>
 
@@ -466,7 +486,7 @@ export function ContactModal(props: ContactModalProps) {
               type="button"
               onClick={() => setShowSuccess(false)}
               aria-label="Закрыть"
-              className="absolute top-3 right-3 cursor-pointer opacity-60 transition-opacity hover:opacity-100"
+              className="absolute top-3 right-3 cursor-pointer opacity-60 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <XIcon className="size-4" />
             </button>
