@@ -3,10 +3,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { StarIcon2 } from './Icons';
+import { ResumeLinks } from './ResumeLinks';
 
 export function About() {
   return (
-    <section id="about" className='overflow-hidden lg:overflow-visible'>
+    <section id="about" className="overflow-hidden lg:overflow-visible">
       <div className="container">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-8">
           {/* Photo */}
@@ -49,19 +50,26 @@ export function About() {
               </h2>
               <div className="bg-background absolute inset-0 z-0 hidden blur-3xl lg:block"></div>
             </div>
-            <div className="text-foreground space-y-4 leading-snug tracking-tighter md:text-xl lg:mt-52 lg:space-y-8 flex-1">
+            <div className="text-foreground flex-1 space-y-4 leading-snug tracking-tighter md:text-xl lg:mt-52 lg:space-y-8">
               <p className="text-4xl font-light">Привет, меня зовут Ирина.</p>
               <div className="flex grid-cols-4 flex-col gap-4 text-pretty md:gap-10 lg:grid lg:gap-20">
                 <p className="col-span-4">
-                  Я веб-дизайнер из Минска, Ваш проект для меня — это не просто поток, а&nbsp;возможность создать что-то выдающееся для Вас и моего портфолио.
+                  Я веб-дизайнер из Минска, Ваш проект для меня — это не просто поток,
+                  а&nbsp;возможность создать что-то выдающееся для Вас и моего портфолио.
                 </p>
                 <p className="col-span-3 col-start-2">
-                  Создаю понятные и&nbsp;современные интерфейсы, начиная от&nbsp;карточек для&nbsp;маркетплейсов, заканчивая сайтами для&nbsp;интернет-магазинов и&nbsp;бизнеса.
+                  Создаю понятные и&nbsp;современные интерфейсы, начиная от&nbsp;карточек
+                  для&nbsp;маркетплейсов, заканчивая сайтами для&nbsp;интернет-магазинов
+                  и&nbsp;бизнеса.
                 </p>
                 <p className="col-span-4">
-                  Я гарантирую полную точность в&nbsp;проекте, уделяя внимание структуре, UI/UX и&nbsp;постараюсь сделать так, чтобы результат превзошел ожидания и&nbsp;помог вашему бизнесу вырасти.
+                  Я гарантирую полную точность в&nbsp;проекте, уделяя внимание структуре, UI/UX
+                  и&nbsp;постараюсь сделать так, чтобы результат превзошел ожидания и&nbsp;помог
+                  вашему бизнесу вырасти.
                 </p>
               </div>
+
+              <ResumeLinks />
             </div>
           </motion.div>
         </div>
