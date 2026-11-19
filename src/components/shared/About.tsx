@@ -49,7 +49,7 @@ export function About() {
               </h2>
               <div className="bg-background absolute inset-0 z-0 hidden blur-3xl lg:block"></div>
             </div>
-            <div className="text-foreground space-y-4 leading-snug tracking-tighter md:text-xl lg:mt-52 lg:space-y-8">
+            <div className="text-foreground space-y-4 leading-snug tracking-tighter md:text-xl lg:mt-52 lg:space-y-8 flex-1">
               <p className="text-4xl font-light">Привет, меня зовут Ирина.</p>
               <div className="flex grid-cols-4 flex-col gap-4 text-pretty md:gap-10 lg:grid lg:gap-20">
                 <p className="col-span-4">
