@@ -43,13 +43,7 @@ export function Hero() {
                 <p
                   className="text-[clamp(16px,2vw,32px)]"
                 >
-                  Привет, я Ирина из Минска, Беларусь.
-                </p>
-                <p
-                  className="text-[clamp(16px,2vw,32px)] self-end"
-                >
-                  Создаю не просто красивый дизайн,
-                  <br />а сайт, который работает на Вас.
+                  Привет, я веб-дизайнер из Минска, Беларусь.
                 </p>
               </div>
             </motion.div>

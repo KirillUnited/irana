@@ -4,6 +4,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import { Mail, Send, Phone, LoaderIcon, CheckCircle2Icon, XIcon } from 'lucide-react';
 import { toast } from 'sonner';
+import { ResumeLinks } from './ResumeLinks';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -352,6 +353,8 @@ function ContactContent({ onSuccess }: { onSuccess?: () => void }) {
         </div>
 
         <ContactLinks />
+
+        <ResumeLinks className="mt-10" />
 
         {contactInfo.qrCode && (
           <div className="mt-10 inline-flex justify-start border self-start">
