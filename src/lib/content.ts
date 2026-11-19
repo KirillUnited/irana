@@ -147,7 +147,7 @@ export const websiteTypes: WebsiteType[] = [
 export const socialLinks: SocialLink[] = [
   { label: 'Телефон', href: 'tel:+375445764476', external: false },
   { label: 'Viber', href: 'viber://chat?number=%2B375445764476', external: true },
-  { label: 'Telegram', href: 'https://t.me/webdesigner_Korzhel', external: true },
+  { label: 'Telegram', href: 'https://t.me/korzhelirina', external: true },
   { label: 'Mail', href: 'mailto:hello@irinakorzh.by', external: false },
   { label: 'Behance', href: 'https://www.behance.net/3e34ec89', external: true },
   {
@@ -161,7 +161,7 @@ export const contactInfo: ContactInfo = {
   phone: '+375 (44) 576-44-76',
   email: 'iren_korzhel@mail.ru',
   viber: 'viber://chat?number=%2B375445764476',
-  telegram: 'https://t.me/webdesigner_Korzhel',
+  telegram: 'https://t.me/korzhelirina',
   behance: 'https://www.behance.net/3e34ec89',
   instagram: 'https://www.instagram.com/korzhelirina?dlrf=MW9yN3FhN2VkNTM5aQ==',
   qrCode: '/images/qr-code.png',

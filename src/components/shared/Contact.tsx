@@ -269,7 +269,7 @@ function ContactLinks() {
     },
     {
       label: 'Telegram',
-      value: '@webdesigner_Korzhel',
+      value: '@korzhelirina',
       href: contactInfo.telegram || '#',
       icon: Send,
       external: true,
@@ -354,7 +354,7 @@ function ContactContent({ onSuccess }: { onSuccess?: () => void }) {
         <ContactLinks />
 
         {contactInfo.qrCode && (
-          <div className="mt-10 flex justify-start">
+          <div className="mt-10 inline-flex justify-start border self-start">
             <Image
               src={contactInfo.qrCode}
               alt="QR-код для связи"
