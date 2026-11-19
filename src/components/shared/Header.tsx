@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { ContactModal } from './Contact';
 import { ThemeSwitcher } from '../kibo-ui/theme-switcher';
+import Image from 'next/image';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -14,9 +15,16 @@ export function Header() {
   return (
     <header className="bg-background z-20 border-b border-b-foreground sticky top-0">
       <div className="container flex min-h-18 items-center justify-between gap-5 py-4">
-        <Link href="/" className="font-serif font-medium text-2xl w-3xs" data-testid="link-logo">
-          Ирина<br />Коржель
-        </Link>
+        <div className="w-3xs">
+          <Image
+            width={64}
+            height={64}
+            alt='Услуги веб-дизайна и UI/UX'
+            src={'/images/logo.jpg'}
+            className='rounded-xl size-9 md:size-16'
+          />
+
+        </div>
 
         {/* Desktop navigation */}
         <nav className="hidden lg:flex lg:flex-row lg:items-center lg:gap-10 2xl:gap-20" aria-label="Основная навигация">
